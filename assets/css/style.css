@@ -1024,31 +1024,67 @@ video::-webkit-media-controls-start-playback-button{
     width:90px;
     height:90px;
 
-    border:none;
+    display:flex;
 
-    border-radius:50%;
+    align-items:center;
+    justify-content:center;
 
-    background:rgba(13,27,58,.82);
+    border-radius:999px;
 
-    backdrop-filter:blur(10px);
+    background:rgba(13,27,58,.92);
 
     color:var(--gold-light);
 
-    font-size:2rem;
+    font-size:2.2rem;
+
+    line-height:1;
 
     cursor:pointer;
 
-    appearance:none;
-    -webkit-appearance:none;
+    user-select:none;
 
-    outline:none;
+    -webkit-user-select:none;
+
+    -webkit-touch-callout:none;
 
     -webkit-tap-highlight-color:transparent;
 
-    transition:.3s ease;
+    touch-action:manipulation;
+
+    outline:none !important;
+
+    border:none !important;
 
     box-shadow:
-        0 0 25px rgba(242,201,76,.15);
+        0 0 25px rgba(242,201,76,.18);
+
+    z-index:5;
+
+}
+
+/* IMPORTANT */
+
+.play-video-button *,
+.play-video-button::before,
+.play-video-button::after{
+
+    pointer-events:none;
+
+}
+
+/* REMOVE MOBILE BLUE */
+
+.play-video-button:focus,
+.play-video-button:active,
+.play-video-button:hover{
+
+    outline:none !important;
+
+    border:none !important;
+
+    background:rgba(13,27,58,.92);
+
+    color:var(--gold-light);
 
 }
 
