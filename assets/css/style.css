@@ -1044,16 +1044,23 @@ body.modal-open{
 
 }
 
-.play-video-button:hover{
+/* Desktop hover only */
 
-    transform:
-        translate(-50%,-50%)
-        scale(1.08);
+@media(hover:hover){
 
-    background:rgba(212,160,23,.18);
+    .play-video-button:hover{
+
+        transform:
+            translate(-50%,-50%)
+            scale(1.08);
+
+        background:rgba(212,160,23,.18);
+
+    }
 
 }
 
+/* Mobile safe */
 
 .play-video-button:focus,
 .play-video-button:active{
@@ -1061,6 +1068,10 @@ body.modal-open{
     outline:none;
 
     border:none;
+
+    transform:translate(-50%,-50%);
+
+    background:rgba(13,27,58,.82);
 
 }
 
