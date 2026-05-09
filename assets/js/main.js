@@ -1,22 +1,31 @@
-document.addEventListener("DOMContentLoaded", async () => {
+document.addEventListener(
+    "DOMContentLoaded",
+    async () => {
 
-    await loadComponent(
-        "navbar",
-        getAssetPath("../components/navbar.html")
-    );
+        await loadComponent(
+            "navbar",
+            "assets/components/navbar.html"
+        );
 
-    await loadComponent(
-        "footer",
-        getAssetPath("../components/footer.html")
-    );
+        await loadComponent(
+            "footer",
+            "assets/components/footer.html"
+        );
 
-    setActiveLink();
-    setCopyrightYear();
-    initAOS();
-    initGifSwiper();
-    initProjectModal();
+        setActiveLink();
 
-});
+        setCopyrightYear();
+
+        initAOS();
+
+        initGifSwiper();
+
+        initProjectModal();
+
+        initGameVideoPreviews();
+
+    }
+);
 
 // Build paths relative to this JavaScript file.
 // This works in Live Server and in GitHub Pages inside /juan-carlos/.
@@ -92,11 +101,17 @@ function setActiveLink(){
 // Dynamic copyright
 function setCopyrightYear(){
 
-    const year = document.getElementById("copyright-year");
+    const yearElement =
+        document.getElementById("copyrightYear") ||
+        document.getElementById("copyright-year");
 
-    if(year){
-        year.textContent = new Date().getFullYear();
+    if(!yearElement){
+        console.warn("Copyright year element not found");
+        return;
     }
+
+    yearElement.textContent =
+        new Date().getFullYear();
 
 }
 
@@ -489,7 +504,39 @@ function closeProjectModal(){
 // GAME VIDEO PREVIEW
 // =========================================
 
-document.addEventListener("DOMContentLoaded", () => {
+// =========================================
+// DOM READY
+// =========================================
+
+document.addEventListener("DOMContentLoaded", async () => {
+
+    // Load components
+
+    await loadComponent(
+        "navbar",
+        "assets/components/navbar.html"
+    );
+
+    await loadComponent(
+        "footer",
+        "assets/components/footer.html"
+    );
+
+    // Init UI
+
+    setActiveLink();
+
+    setCopyrightYear();
+
+    initAOS();
+
+    initGifSwiper();
+
+    initProjectModal();
+
+    // =========================================
+    // GAME 1 VIDEO
+    // =========================================
 
     const playButton =
         document.getElementById("playVideoButton");
@@ -501,116 +548,185 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("videoThumbnail");
 
     if(
-        !playButton ||
-        !video ||
-        !thumbnail
-    ) return;
+        playButton &&
+        video &&
+        thumbnail
+    ){
 
-    playButton.addEventListener("click", () => {
+        playButton.addEventListener("click", () => {
 
-        thumbnail.style.display = "none";
+            thumbnail.style.display = "none";
 
-        video.style.display = "block";
+            video.style.display = "block";
 
-        video.controls = true;
+            video.controls = true;
 
-        video.play();
+            video.play();
 
-    });
+        });
 
-    video.addEventListener("ended", async () => {
+        video.addEventListener("ended", async () => {
 
-    // Exit fullscreen safely
+            try{
 
-    if(document.fullscreenElement){
+                if(document.fullscreenElement){
 
-        await document.exitFullscreen();
+                    await document.exitFullscreen();
+
+                }
+
+                if(video.webkitDisplayingFullscreen){
+
+                    video.webkitExitFullscreen();
+
+                }
+
+            }
+
+            catch(error){
+
+                console.log(error);
+
+            }
+
+            video.pause();
+
+            video.currentTime = 0;
+
+            video.style.display = "none";
+
+            thumbnail.style.display = "block";
+
+            video.controls = false;
+
+        });
 
     }
 
-    // iOS Safari fallback
+    // =========================================
+    // GAME 2 VIDEO
+    // =========================================
 
-    if(video.webkitDisplayingFullscreen){
-
-        video.webkitExitFullscreen();
-
-    }
-
-    video.pause();
-
-    video.currentTime = 0;
-
-    video.style.display = "none";
-
-    thumbnail.style.display = "block";
-
-    video.controls = false;
-
-});
-
-});
-
-// =========================================
-// GAME 2 VIDEO PREVIEW
-// =========================================
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    const playButton =
+    const playButton1 =
         document.getElementById("playVideoButton1");
 
-    const video =
+    const video1 =
         document.getElementById("gameVideo1");
 
-    const thumbnail =
+    const thumbnail1 =
         document.getElementById("videoThumbnail1");
 
     if(
-        !playButton ||
-        !video ||
-        !thumbnail
-    ) return;
+        playButton1 &&
+        video1 &&
+        thumbnail1
+    ){
 
-    playButton.addEventListener("click", () => {
+        playButton1.addEventListener("click", () => {
 
-        thumbnail.style.display = "none";
+            thumbnail1.style.display = "none";
 
-        video.style.display = "block";
+            video1.style.display = "block";
 
-        video.controls = true;
+            video1.controls = true;
 
-        video.play();
+            video1.play();
+
+        });
+
+        video1.addEventListener("ended", async () => {
+
+            try{
+
+                if(document.fullscreenElement){
+
+                    await document.exitFullscreen();
+
+                }
+
+                if(video1.webkitDisplayingFullscreen){
+
+                    video1.webkitExitFullscreen();
+
+                }
+
+            }
+
+            catch(error){
+
+                console.log(error);
+
+            }
+
+            video1.pause();
+
+            video1.currentTime = 0;
+
+            video1.style.display = "none";
+
+            thumbnail1.style.display = "block";
+
+            video1.controls = false;
+
+        });
+
+    }
+
+});
+
+function initGameVideoPreviews(){
+
+    document.querySelectorAll(".game-main-media[data-video-src]").forEach(media => {
+
+        const playButton = media.querySelector(".play-video-button");
+        const previewImage = media.querySelector(".game-preview-image");
+        const videoSrc = media.dataset.videoSrc;
+
+        if(!playButton || !previewImage || !videoSrc) return;
+
+        playButton.addEventListener("click", () => {
+
+            const video = document.createElement("video");
+
+            video.className = "game-main-video";
+            video.src = videoSrc;
+            video.controls = true;
+            video.playsInline = true;
+
+            video.setAttribute("controlslist", "nodownload noplaybackrate");
+            video.setAttribute("disablepictureinpicture", "");
+
+            previewImage.style.display = "none";
+            playButton.style.display = "none";
+
+            media.appendChild(video);
+
+            video.play();
+
+            video.addEventListener("ended", async () => {
+
+                try{
+                    if(document.fullscreenElement){
+                        await document.exitFullscreen();
+                    }
+
+                    if(video.webkitDisplayingFullscreen){
+                        video.webkitExitFullscreen();
+                    }
+                }catch(error){
+                    console.log(error);
+                }
+
+                video.pause();
+                video.remove();
+
+                previewImage.style.display = "block";
+                playButton.style.display = "flex";
+
+            });
+
+        });
 
     });
 
-    video.addEventListener("ended", async () => {
-
-    // Exit fullscreen safely
-
-    if(document.fullscreenElement){
-
-        await document.exitFullscreen();
-
-    }
-
-    // iOS Safari fallback
-
-    if(video.webkitDisplayingFullscreen){
-
-        video.webkitExitFullscreen();
-
-    }
-
-    video.pause();
-
-    video.currentTime = 0;
-
-    video.style.display = "none";
-
-    thumbnail.style.display = "block";
-
-    video.controls = false;
-
-});
-
-});
+}

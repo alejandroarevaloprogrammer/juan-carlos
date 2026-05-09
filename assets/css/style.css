@@ -764,17 +764,11 @@ body.modal-open{
 }
 
 .game-main-video{
-
     width:100%;
-
-    height:auto;
-
-    max-height:100%;
-
-    display:none;
-
+    height:100%;
+    object-fit:contain;
     background:#000;
-
+    display:block;
 }
 
 video{
