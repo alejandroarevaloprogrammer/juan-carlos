@@ -227,8 +227,12 @@ const projects = [
         ],
 
         slides: [
+            "assets/gifs/tsukiyo/gameplay1.gif",
+            "assets/gifs/tsukiyo/gameplay2.gif",
             "assets/gifs/tsukiyo/gameplay3.gif",
-            "assets/gifs/tsukiyo/gameplay5.gif"
+            "assets/gifs/tsukiyo/gameplay4.gif",
+            "assets/gifs/tsukiyo/gameplay5.gif",
+            "assets/gifs/tsukiyo/gameplay6.gif"
         ]
     },
 
