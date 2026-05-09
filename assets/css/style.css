@@ -1075,6 +1075,56 @@ body.modal-open{
 
 }
 
+.play-video-button{
+
+    position:absolute;
+
+    top:50%;
+    left:50%;
+
+    transform:translate(-50%,-50%);
+
+    width:90px;
+    height:90px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    line-height:1;
+
+    border-radius:50%;
+
+    background:rgba(13,27,58,.82);
+
+    backdrop-filter:blur(10px);
+
+    color:var(--gold-light);
+
+    font-size:2rem;
+
+    cursor:pointer;
+
+    user-select:none;
+
+    touch-action:manipulation;
+
+    appearance:none;
+    -webkit-appearance:none;
+
+    outline:none;
+
+    -webkit-tap-highlight-color:transparent;
+
+    transition:.3s ease;
+
+    box-shadow:
+        0 0 25px rgba(242,201,76,.15);
+
+}
+
 /* =========================================
    MOBILE NAVBAR
 ========================================= */
