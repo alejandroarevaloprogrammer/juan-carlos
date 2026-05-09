@@ -1030,6 +1030,13 @@ body.modal-open{
 
     cursor:pointer;
 
+    appearance:none;
+    -webkit-appearance:none;
+
+    outline:none;
+
+    -webkit-tap-highlight-color:transparent;
+
     transition:.3s ease;
 
     box-shadow:
@@ -1044,6 +1051,16 @@ body.modal-open{
         scale(1.08);
 
     background:rgba(212,160,23,.18);
+
+}
+
+
+.play-video-button:focus,
+.play-video-button:active{
+
+    outline:none;
+
+    border:none;
 
 }
 
