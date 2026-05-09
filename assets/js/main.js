@@ -272,8 +272,11 @@ const projects = [
         ],
 
         slides: [
-            "https://images.unsplash.com/photo-1547394765-185e1e68f34e?q=80&w=1200",
-            "https://images.unsplash.com/photo-1547394765-185e1e68f34e?q=80&w=1200"
+            "assets/img/coffee/gameplay1.png",
+            "assets/img/coffee/gameplay2.png",
+            "assets/img/coffee/gameplay3.png",
+            "assets/img/coffee/gameplay4.png",
+            "assets/img/coffee/gameplay5.png"
         ]
     }
 
