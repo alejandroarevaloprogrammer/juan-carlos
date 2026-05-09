@@ -994,22 +994,6 @@ video::-webkit-media-controls-start-playback-button{
 
 }
 
-/* Video */
-
-.game-main-video{
-
-    width:100%;
-
-    height:auto;
-
-    max-height:100%;
-
-    display:block;
-
-    background:#000;
-
-}
-
 /* Play button */
 
 .play-video-button{
@@ -1062,8 +1046,6 @@ video::-webkit-media-controls-start-playback-button{
 
 }
 
-/* IMPORTANT */
-
 .play-video-button *,
 .play-video-button::before,
 .play-video-button::after{
@@ -1071,8 +1053,6 @@ video::-webkit-media-controls-start-playback-button{
     pointer-events:none;
 
 }
-
-/* REMOVE MOBILE BLUE */
 
 .play-video-button:focus,
 .play-video-button:active,
@@ -1088,8 +1068,6 @@ video::-webkit-media-controls-start-playback-button{
 
 }
 
-/* Desktop hover only */
-
 @media(hover:hover){
 
     .play-video-button:hover{
@@ -1098,7 +1076,8 @@ video::-webkit-media-controls-start-playback-button{
             translate(-50%,-50%)
             scale(1.08);
 
-        background:rgba(212,160,23,.18);
+        background:
+            rgba(212,160,23,.18);
 
     }
 
@@ -1116,56 +1095,6 @@ video::-webkit-media-controls-start-playback-button{
     transform:translate(-50%,-50%);
 
     background:rgba(13,27,58,.82);
-
-}
-
-.play-video-button{
-
-    position:absolute;
-
-    top:50%;
-    left:50%;
-
-    transform:translate(-50%,-50%);
-
-    width:90px;
-    height:90px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    line-height:1;
-
-    border-radius:50%;
-
-    background:rgba(13,27,58,.82);
-
-    backdrop-filter:blur(10px);
-
-    color:var(--gold-light);
-
-    font-size:2rem;
-
-    cursor:pointer;
-
-    user-select:none;
-
-    touch-action:manipulation;
-
-    appearance:none;
-    -webkit-appearance:none;
-
-    outline:none;
-
-    -webkit-tap-highlight-color:transparent;
-
-    transition:.3s ease;
-
-    box-shadow:
-        0 0 25px rgba(242,201,76,.15);
 
 }
 
