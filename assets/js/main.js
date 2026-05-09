@@ -228,7 +228,6 @@ const projects = [
 
         slides: [
             "assets/gifs/tsukiyo/gameplay3.gif",
-            "assets/gifs/tsukiyo/gameplay4.gif",
             "assets/gifs/tsukiyo/gameplay5.gif"
         ]
     },
@@ -249,7 +248,11 @@ const projects = [
             "assets/gifs/advancewars/gameplay1.gif",
             "assets/gifs/advancewars/gameplay2.gif",
             "assets/gifs/advancewars/gameplay3.gif",
-            "assets/gifs/advancewars/gameplay4.gif"
+            "assets/gifs/advancewars/gameplay4.gif",
+            "assets/gifs/advancewars/gameplay5.gif",
+            "assets/gifs/advancewars/gameplay6.gif",
+            "assets/gifs/advancewars/gameplay7.gif",
+            "assets/gifs/advancewars/gameplay8.gif"
         ]
     },
 
