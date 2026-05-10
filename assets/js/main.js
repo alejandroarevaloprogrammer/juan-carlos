@@ -1,49 +1,23 @@
-document.addEventListener(
-    "DOMContentLoaded",
-    async () => {
+/**
+ * Main JavaScript controller for the portfolio.
+ *
+ * Responsibilities:
+ * - Load shared HTML components.
+ * - Highlight the active navigation link.
+ * - Initialize UI libraries.
+ * - Manage project modals and media previews.
+ */
 
-        await loadComponent(
-            "navbar",
-            "assets/components/navbar.html"
-        );
+/* =========================================
+   Shared component loader
+========================================= */
 
-        await loadComponent(
-            "footer",
-            "assets/components/footer.html"
-        );
-
-        setActiveLink();
-
-        setCopyrightYear();
-
-        initAOS();
-
-        initGifSwiper();
-
-        initProjectModal();
-
-        initGameVideoPreviews();
-
-    }
-);
-
-// Build paths relative to this JavaScript file.
-// This works in Live Server and in GitHub Pages inside /juan-carlos/.
-function getAssetPath(relativePath){
-
-    const currentScript =
-        document.currentScript ||
-        document.querySelector('script[src$="main.js"]');
-
-    if(!currentScript){
-        return relativePath;
-    }
-
-    return new URL(relativePath, currentScript.src).href;
-
-}
-
-// Load reusable HTML components
+/**
+ * Loads an external HTML fragment into a target element.
+ *
+ * @param {string} id - Target element ID.
+ * @param {string} path - Component path.
+ */
 async function loadComponent(id, path){
 
     const element = document.getElementById(id);
@@ -53,7 +27,7 @@ async function loadComponent(id, path){
     try{
 
         const response = await fetch(path, {
-            cache: "no-cache"
+            cache:"no-cache"
         });
 
         if(!response.ok){
@@ -62,8 +36,7 @@ async function loadComponent(id, path){
 
         element.innerHTML = await response.text();
 
-    }
-    catch(error){
+    }catch(error){
 
         console.error(error);
 
@@ -77,7 +50,13 @@ async function loadComponent(id, path){
 
 }
 
-// Active navbar link
+/* =========================================
+   Navigation state
+========================================= */
+
+/**
+ * Adds the active state to the current page link.
+ */
 function setActiveLink(){
 
     const currentPage =
@@ -98,142 +77,82 @@ function setActiveLink(){
 
 }
 
-// Dynamic copyright
+/* =========================================
+   Dynamic footer year
+========================================= */
+
+/**
+ * Keeps the footer copyright year up to date.
+ */
 function setCopyrightYear(){
 
     const yearElement =
         document.getElementById("copyrightYear") ||
         document.getElementById("copyright-year");
 
-    if(!yearElement){
-        console.warn("Copyright year element not found");
-        return;
-    }
+    if(!yearElement) return;
 
-    yearElement.textContent =
-        new Date().getFullYear();
+    yearElement.textContent = new Date().getFullYear();
 
 }
 
-// AOS animations
+/* =========================================
+   Animation initialization
+========================================= */
+
+/**
+ * Initializes AOS animations when the library is available.
+ */
 function initAOS(){
 
     if(typeof AOS === "undefined") return;
 
     AOS.init({
-        duration: 1000,
-        once: true
+        duration:1000,
+        once:true
     });
 
 }
 
-// Swiper GIF carousel
+/* =========================================
+   Optional card swiper initialization
+========================================= */
+
+/**
+ * Initializes legacy GIF swipers if they exist on the page.
+ */
 function initGifSwiper(){
 
     if(typeof Swiper === "undefined") return;
 
-    const swiperContainer = document.querySelector(".gameGifSwiper");
+    document.querySelectorAll(".gameGifSwiper").forEach(swiperContainer => {
 
-    if(!swiperContainer) return;
-
-    new Swiper(".gameGifSwiper", {
-
-        loop: true,
-
-        effect: "fade",
-
-        speed: 1000,
-
-        autoplay: {
-            delay: 3500,
-            disableOnInteraction: false,
-        }
+        new Swiper(swiperContainer, {
+            loop:true,
+            effect:"fade",
+            speed:1000,
+            autoplay:{
+                delay:3500,
+                disableOnInteraction:false
+            }
+        });
 
     });
 
 }
 
-// Project modal
-function initProjectModal(){
-
-    const modal = document.getElementById("projectModal");
-
-    if(!modal) return;
-
-    const openButtons = document.querySelectorAll(".open-project-modal");
-    const closeButton = document.getElementById("closeProjectModal");
-    const overlay = modal.querySelector(".project-modal-overlay");
-
-    function openModal(event){
-
-        if(event){
-            event.preventDefault();
-        }
-
-        modal.classList.add("active");
-        modal.setAttribute("aria-hidden", "false");
-
-        document.body.classList.add("modal-open");
-
-    }
-
-    function closeModal(){
-
-        modal.classList.remove("active");
-        modal.setAttribute("aria-hidden", "true");
-
-        document.body.classList.remove("modal-open");
-
-    }
-
-    openButtons.forEach(button => {
-
-        button.addEventListener("click", openModal);
-
-    });
-
-    if(closeButton){
-        closeButton.addEventListener("click", closeModal);
-    }
-
-    if(overlay){
-        overlay.addEventListener("click", closeModal);
-    }
-
-    document.addEventListener("keydown", event => {
-
-        if(event.key === "Escape" && modal.classList.contains("active")){
-            closeModal();
-        }
-
-    });
-
-}
-
-function initAOS(){
-
-    if(typeof AOS === "undefined") return;
-
-    AOS.init({
-        duration: 1000,
-        once: true
-    });
-
-}
-
-
-// =========================================
-// DYNAMIC MODAL PROJECT SYSTEM
-// =========================================
+/* =========================================
+   Project data
+========================================= */
 
 const projects = [
 
     {
-        title: "Tsukiyo: Battle Doll",
+        title:"Tsukiyo: Battle Doll",
 
         link:"https://store.steampowered.com/app/4204640/Tsukiyo_Battle_Doll/",
 
-        tags: [
+        tags:[
             "C#",
             "Unity",
             "Platform",
@@ -241,7 +160,7 @@ const projects = [
             "Hack&Slash"
         ],
 
-        slides: [
+        slides:[
             "assets/gifs/tsukiyo/gameplay1.gif",
             "assets/gifs/tsukiyo/gameplay2.gif",
             "assets/gifs/tsukiyo/gameplay3.gif",
@@ -252,18 +171,18 @@ const projects = [
     },
 
     {
-        title: "Advance Wars",
+        title:"Advance Wars",
 
         link:"https://github.com/juancarlosuarez/Advance-Wars-Unity",
 
-        tags: [
+        tags:[
             "C#",
             "Unity",
             "Strategy",
             "Tactic Game"
         ],
 
-        slides: [
+        slides:[
             "assets/gifs/advancewars/gameplay1.gif",
             "assets/gifs/advancewars/gameplay2.gif",
             "assets/gifs/advancewars/gameplay3.gif",
@@ -276,17 +195,17 @@ const projects = [
     },
 
     {
-        title: "Coffee Game",
+        title:"Coffee Game",
 
         link:null,
 
-        tags: [
+        tags:[
             "Unity",
             "Racing",
             "WebGL"
         ],
 
-        slides: [
+        slides:[
             "assets/img/coffee/gameplay1.png",
             "assets/img/coffee/gameplay2.png",
             "assets/img/coffee/gameplay3.png",
@@ -300,27 +219,34 @@ const projects = [
 let currentProjectIndex = 0;
 let projectSwiper = null;
 
+/* =========================================
+   Project modal
+========================================= */
+
+/**
+ * Initializes all project modal triggers and controls.
+ */
 function initProjectModal(){
 
     const modal = document.getElementById("projectModal");
 
     if(!modal) return;
 
-    document
-        .querySelectorAll(".open-project-modal")
-        .forEach(button => {
+    document.querySelectorAll(".open-project-modal").forEach(button => {
 
-            button.addEventListener("click", event => {
+        button.addEventListener("click", event => {
 
-                event.preventDefault();
+            event.preventDefault();
 
-                openProjectModal(
-                    parseInt(button.dataset.project)
-                );
+            const projectIndex = Number.parseInt(button.dataset.project, 10);
 
-            });
+            if(Number.isNaN(projectIndex)) return;
+
+            openProjectModal(projectIndex);
 
         });
+
+    });
 
     document
         .getElementById("closeProjectModal")
@@ -335,8 +261,7 @@ function initProjectModal(){
         ?.addEventListener("click", () => {
 
             openProjectModal(
-                (currentProjectIndex + 1)
-                % projects.length
+                (currentProjectIndex + 1) % projects.length
             );
 
         });
@@ -346,93 +271,106 @@ function initProjectModal(){
         ?.addEventListener("click", () => {
 
             openProjectModal(
-                (currentProjectIndex - 1 + projects.length)
-                % projects.length
+                (currentProjectIndex - 1 + projects.length) % projects.length
             );
 
         });
 
-}
+    document.addEventListener("keydown", event => {
 
-function openProjectModal(index){
-
-    currentProjectIndex = index;
-
-    const project = projects[index];
-
-    // =========================================
-    // TITLE
-    // =========================================
-
-    document.getElementById(
-        "modalProjectTitle"
-    ).textContent = project.title;
-
-    // =========================================
-    // EXTERNAL LINK BUTTON
-    // =========================================
-
-    const externalLinkButton =
-        document.getElementById(
-            "projectExternalLink"
-        );
-
-    if(project.link){
-
-        externalLinkButton.href =
-            project.link;
-
-        externalLinkButton.style.display =
-    "flex";
-
-    }else{
-
-        externalLinkButton.style.display =
-            "none";
-
-    }
-
-    // =========================================
-    // TAGS
-    // =========================================
-
-    const tags =
-        document.getElementById(
-            "modalProjectTags"
-        );
-
-    tags.innerHTML = "";
-
-    project.tags.forEach(tag => {
-
-        const span =
-            document.createElement("span");
-
-        span.textContent = tag;
-
-        tags.appendChild(span);
+        if(
+            event.key === "Escape" &&
+            modal.classList.contains("active")
+        ){
+            closeProjectModal();
+        }
 
     });
 
-    // =========================================
-    // SLIDES
-    // =========================================
+}
 
-    const wrapper =
-        document.getElementById(
-            "modalSwiperWrapper"
-        );
+/**
+ * Opens the modal and renders the selected project.
+ *
+ * @param {number} index - Project index.
+ */
+function openProjectModal(index){
+
+    const project = projects[index];
+
+    if(!project) return;
+
+    currentProjectIndex = index;
+
+    renderProjectTitle(project);
+    renderProjectTags(project);
+    renderProjectSlides(project);
+    renderProjectLink(project);
+    resetProjectSwiper();
+    showProjectModal();
+
+}
+
+/**
+ * Renders the current project title.
+ *
+ * @param {object} project - Project data.
+ */
+function renderProjectTitle(project){
+
+    const titleElement = document.getElementById("modalProjectTitle");
+
+    if(!titleElement) return;
+
+    titleElement.textContent = project.title;
+
+}
+
+/**
+ * Renders the current project tag list.
+ *
+ * @param {object} project - Project data.
+ */
+function renderProjectTags(project){
+
+    const tagsContainer = document.getElementById("modalProjectTags");
+
+    if(!tagsContainer) return;
+
+    tagsContainer.innerHTML = "";
+
+    project.tags.forEach(tag => {
+
+        const tagElement = document.createElement("span");
+
+        tagElement.textContent = tag;
+
+        tagsContainer.appendChild(tagElement);
+
+    });
+
+}
+
+/**
+ * Renders the current project carousel slides.
+ *
+ * @param {object} project - Project data.
+ */
+function renderProjectSlides(project){
+
+    const wrapper = document.getElementById("modalSwiperWrapper");
+
+    if(!wrapper) return;
 
     wrapper.innerHTML = "";
 
     project.slides.forEach(slide => {
 
-        const div =
-            document.createElement("div");
+        const slideElement = document.createElement("div");
 
-        div.className = "swiper-slide";
+        slideElement.className = "swiper-slide";
 
-        div.innerHTML = `
+        slideElement.innerHTML = `
             <img
                 src="${slide}"
                 class="project-slide-image"
@@ -440,77 +378,203 @@ function openProjectModal(index){
             >
         `;
 
-        wrapper.appendChild(div);
+        wrapper.appendChild(slideElement);
 
     });
 
-    // =========================================
-    // RESET SWIPER
-    // =========================================
+}
 
-    if(projectSwiper){
+/**
+ * Shows or hides the external project link.
+ *
+ * @param {object} project - Project data.
+ */
+function renderProjectLink(project){
 
-        projectSwiper.destroy(
-            true,
-            true
-        );
+    const externalLinkButton = document.getElementById("projectExternalLink");
+
+    if(!externalLinkButton) return;
+
+    if(project.link){
+
+        externalLinkButton.href = project.link;
+        externalLinkButton.style.display = "flex";
+
+    }else{
+
+        externalLinkButton.style.display = "none";
 
     }
 
-    projectSwiper =
-        new Swiper(".modalProjectSwiper", {
+}
 
-            loop:true,
+/**
+ * Recreates the Swiper instance after replacing slide content.
+ */
+function resetProjectSwiper(){
 
-            speed:900,
+    if(typeof Swiper === "undefined") return;
 
-            autoplay:{
-                delay:3500,
-                disableOnInteraction:false
-            },
+    if(projectSwiper){
 
-            navigation:{
-                nextEl:".swiper-button-next",
-                prevEl:".swiper-button-prev"
-            }
+        projectSwiper.destroy(true, true);
 
-        });
+    }
 
-    // =========================================
-    // OPEN MODAL
-    // =========================================
-
-    document
-        .getElementById("projectModal")
-        .classList.add("active");
-
-    document.body.classList.add(
-        "modal-open"
-    );
+    projectSwiper = new Swiper(".modalProjectSwiper", {
+        loop:true,
+        speed:900,
+        autoplay:{
+            delay:3500,
+            disableOnInteraction:false
+        },
+        navigation:{
+            nextEl:".swiper-button-next",
+            prevEl:".swiper-button-prev"
+        }
+    });
 
 }
 
+/**
+ * Displays the project modal.
+ */
+function showProjectModal(){
+
+    const modal = document.getElementById("projectModal");
+
+    if(!modal) return;
+
+    modal.classList.add("active");
+    modal.setAttribute("aria-hidden", "false");
+
+    document.body.classList.add("modal-open");
+
+}
+
+/**
+ * Closes the project modal.
+ */
 function closeProjectModal(){
 
-    document
-        .getElementById("projectModal")
-        .classList.remove("active");
+    const modal = document.getElementById("projectModal");
+
+    if(!modal) return;
+
+    modal.classList.remove("active");
+    modal.setAttribute("aria-hidden", "true");
 
     document.body.classList.remove("modal-open");
 
 }
 
-// =========================================
-// GAME VIDEO PREVIEW
-// =========================================
+/* =========================================
+   Game video previews
+========================================= */
 
-// =========================================
-// DOM READY
-// =========================================
+/**
+ * Initializes click-to-play video previews.
+ *
+ * Videos are created only after user interaction to prevent
+ * native mobile browsers from drawing their default play overlays.
+ */
+function initGameVideoPreviews(){
+
+    document
+        .querySelectorAll(".game-main-media[data-video-src]")
+        .forEach(media => {
+
+            const playButton = media.querySelector(".play-video-button");
+            const previewImage = media.querySelector(".game-preview-image");
+            const videoSrc = media.dataset.videoSrc;
+
+            if(!playButton || !previewImage || !videoSrc) return;
+
+            playButton.addEventListener("click", () => {
+
+                const video = createPreviewVideo(videoSrc);
+
+                previewImage.style.display = "none";
+                playButton.style.display = "none";
+
+                media.appendChild(video);
+
+                video.play();
+
+                video.addEventListener("ended", async () => {
+
+                    await safelyExitFullscreen(video);
+
+                    video.pause();
+                    video.remove();
+
+                    previewImage.style.display = "block";
+                    playButton.style.display = "flex";
+
+                });
+
+            });
+
+        });
+
+}
+
+/**
+ * Creates a video element for a game preview.
+ *
+ * @param {string} src - Video source URL.
+ * @returns {HTMLVideoElement}
+ */
+function createPreviewVideo(src){
+
+    const video = document.createElement("video");
+
+    video.className = "game-main-video";
+    video.src = src;
+    video.controls = true;
+    video.playsInline = true;
+
+    video.setAttribute("controlslist", "nodownload noplaybackrate");
+    video.setAttribute("disablepictureinpicture", "");
+
+    return video;
+
+}
+
+/**
+ * Safely exits fullscreen mode before removing a video element.
+ *
+ * @param {HTMLVideoElement} video - Active video element.
+ */
+async function safelyExitFullscreen(video){
+
+    try{
+
+        if(document.fullscreenElement){
+
+            await document.exitFullscreen();
+
+        }
+
+        if(video.webkitDisplayingFullscreen){
+
+            video.webkitExitFullscreen();
+
+        }
+
+    }catch(error){
+
+        console.log(error);
+
+    }
+
+}
+
+/* =========================================
+   Application bootstrap
+========================================= */
 
 document.addEventListener("DOMContentLoaded", async () => {
-
-    // Load components
 
     await loadComponent(
         "navbar",
@@ -522,211 +586,11 @@ document.addEventListener("DOMContentLoaded", async () => {
         "assets/components/footer.html"
     );
 
-    // Init UI
-
     setActiveLink();
-
     setCopyrightYear();
-
     initAOS();
-
     initGifSwiper();
-
     initProjectModal();
-
-    // =========================================
-    // GAME 1 VIDEO
-    // =========================================
-
-    const playButton =
-        document.getElementById("playVideoButton");
-
-    const video =
-        document.getElementById("gameVideo");
-
-    const thumbnail =
-        document.getElementById("videoThumbnail");
-
-    if(
-        playButton &&
-        video &&
-        thumbnail
-    ){
-
-        playButton.addEventListener("click", () => {
-
-            thumbnail.style.display = "none";
-
-            video.style.display = "block";
-
-            video.controls = true;
-
-            video.play();
-
-        });
-
-        video.addEventListener("ended", async () => {
-
-            try{
-
-                if(document.fullscreenElement){
-
-                    await document.exitFullscreen();
-
-                }
-
-                if(video.webkitDisplayingFullscreen){
-
-                    video.webkitExitFullscreen();
-
-                }
-
-            }
-
-            catch(error){
-
-                console.log(error);
-
-            }
-
-            video.pause();
-
-            video.currentTime = 0;
-
-            video.style.display = "none";
-
-            thumbnail.style.display = "block";
-
-            video.controls = false;
-
-        });
-
-    }
-
-    // =========================================
-    // GAME 2 VIDEO
-    // =========================================
-
-    const playButton1 =
-        document.getElementById("playVideoButton1");
-
-    const video1 =
-        document.getElementById("gameVideo1");
-
-    const thumbnail1 =
-        document.getElementById("videoThumbnail1");
-
-    if(
-        playButton1 &&
-        video1 &&
-        thumbnail1
-    ){
-
-        playButton1.addEventListener("click", () => {
-
-            thumbnail1.style.display = "none";
-
-            video1.style.display = "block";
-
-            video1.controls = true;
-
-            video1.play();
-
-        });
-
-        video1.addEventListener("ended", async () => {
-
-            try{
-
-                if(document.fullscreenElement){
-
-                    await document.exitFullscreen();
-
-                }
-
-                if(video1.webkitDisplayingFullscreen){
-
-                    video1.webkitExitFullscreen();
-
-                }
-
-            }
-
-            catch(error){
-
-                console.log(error);
-
-            }
-
-            video1.pause();
-
-            video1.currentTime = 0;
-
-            video1.style.display = "none";
-
-            thumbnail1.style.display = "block";
-
-            video1.controls = false;
-
-        });
-
-    }
+    initGameVideoPreviews();
 
 });
-
-function initGameVideoPreviews(){
-
-    document.querySelectorAll(".game-main-media[data-video-src]").forEach(media => {
-
-        const playButton = media.querySelector(".play-video-button");
-        const previewImage = media.querySelector(".game-preview-image");
-        const videoSrc = media.dataset.videoSrc;
-
-        if(!playButton || !previewImage || !videoSrc) return;
-
-        playButton.addEventListener("click", () => {
-
-            const video = document.createElement("video");
-
-            video.className = "game-main-video";
-            video.src = videoSrc;
-            video.controls = true;
-            video.playsInline = true;
-
-            video.setAttribute("controlslist", "nodownload noplaybackrate");
-            video.setAttribute("disablepictureinpicture", "");
-
-            previewImage.style.display = "none";
-            playButton.style.display = "none";
-
-            media.appendChild(video);
-
-            video.play();
-
-            video.addEventListener("ended", async () => {
-
-                try{
-                    if(document.fullscreenElement){
-                        await document.exitFullscreen();
-                    }
-
-                    if(video.webkitDisplayingFullscreen){
-                        video.webkitExitFullscreen();
-                    }
-                }catch(error){
-                    console.log(error);
-                }
-
-                video.pause();
-                video.remove();
-
-                previewImage.style.display = "block";
-                playButton.style.display = "flex";
-
-            });
-
-        });
-
-    });
-
-}

@@ -20,12 +20,11 @@ This project is compatible with:
 https://alejandroarevaloprogrammer.github.io/juan-carlos/
 ```
 
-The JavaScript loads shared components using paths relative to `assets/js/main.js`, so it works both in Live Server and GitHub Pages.
-
 ## Structure
 
 ```text
 index.html
+about.html
 games.html
 contact.html
 assets/
@@ -37,10 +36,16 @@ assets/
   js/
     main.js
   gifs/
-    gameplay1.gif
-    gameplay2.gif
-    gameplay3.gif
-    gameplay4.gif
   img/
-    game1header.png
+  video/
+```
+
+## Assets
+
+This code-only package keeps the media folders empty on purpose. Copy your real images, GIFs and videos back into:
+
+```text
+assets/img/
+assets/gifs/
+assets/video/
 ```

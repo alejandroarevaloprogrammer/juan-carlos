@@ -2,18 +2,19 @@
 <html lang="en">
 
 <head>
-
+    <!-- Page metadata -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Games</title>
 
+    <!-- Favicon -->
     <link
         rel="icon"
         type="image/x-icon"
         href="assets/favicon.ico"
     >
 
+    <!-- Vendor styles -->
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
         rel="stylesheet"
@@ -29,365 +30,300 @@
         rel="stylesheet"
     >
 
+    <!-- Project styles -->
     <link
         rel="stylesheet"
         href="assets/css/style.css"
     >
-
 </head>
 
 <body>
+    <!-- Shared navbar component -->
+    <div id="navbar"></div>
 
-<div id="navbar"></div>
-
-<section class="page-section">
-
-    <div class="container">
-
-        <div
-            class="text-center mb-5"
-            data-aos="fade-up"
-        >
-
-            <h1 class="section-title">
-                Games & Projects
-            </h1>
-
-            <p class="lead mt-3">
-                A collection of Unity and WebGL experiences.
-            </p>
-
-        </div>
-
-        <div class="row g-4">
-
-            <!-- GAME 1 -->
-
+    <!-- Games page header -->
+    <section class="page-section">
+        <div class="container">
             <div
-                class="col-lg-12 col-md-12"
+                class="text-center mb-5"
                 data-aos="fade-up"
-                data-aos-delay="100"
             >
+                <h1 class="section-title">
+                    Games & Projects
+                </h1>
 
-                <div class="card bg-dark text-white border-warning h-100">
-
-                    <div class="text-center game-header-wrapper">
-
-                        <button
-                            type="button"
-                            class="game-header-button open-project-modal"
-                            data-project="0"
-                        >
-
-                            <img
-                                src="assets/img/game1header.png"
-                                alt="Game 1 Header"
-                                class="img-fluid rounded game-title-image"
-                            >
-
-                        </button>
-
-                    </div>
-
-                    <div
-                        class="game-main-media"
-                        data-video-src="assets/video/gameplay1.mp4"
-                    >
-
-                        <img
-                            src="assets/img/game1static.png"
-                            class="game-preview-image"
-                            alt="Gameplay Preview"
-                        >
-
-                        <div class="play-video-button">
-                            ▶
-                        </div>
-
-                    </div>
-
-                    <div class="card-body d-flex flex-column">
-
-                        <p>
-                            Hands-on experience in 2D game development with Unity, building expertise in systems architecture, Hack & Slash combat,
-                            advanced AI, custom editor tooling, workflow optimization, and technical project direction.
-                        </p>
-
-                        <div class="mt-4 mb-4">
-
-                            <h5 class="text-warning">
-                                Systems Developed
-                            </h5>
-
-                            <ul class="game-feature-list">
-
-                                <li>Scalable gameplay architecture design and development</li>
-                                <li>Custom Character Controller</li>
-                                <li>Implementation Advanced AI systems built on State Machines</li>
-                                <li>Hack & Slash combat system featuring combos and abilities</li>
-                                <li>Custom level design tools and map editing utilities</li>
-                                <li>Pixel Perfect pipeline and dynamic tileset management</li>
-                                <li>Smooth camera system with dynamic global parallax</li>
-                                <li>Scene management and productivity tooling</li>
-                                <li>Economy, save, and localization systems VFX and audio integration with cross-platform and gamepad support</li>
-
-                            </ul>
-
-                            <h5 class="text-warning">
-                                Additional roles held
-                            </h5>
-
-                            <ul class="game-feature-list">
-
-                                <li>Project Director</li>
-                                <li>Gameplay Designer</li>
-                                <li>Artistic and Technical Coordination</li>
-
-                            </ul>
-
-                        </div>
-
-                        <button
-                            type="button"
-                            class="btn btn-gold w-100 open-project-modal"
-                            data-project="0"
-                        >
-                            View Project
-                        </button>
-
-                    </div>
-
-                </div>
-
+                <p class="lead mt-3">
+                    A collection of Unity and WebGL experiences.
+                </p>
             </div>
 
-            <!-- GAME 2 -->
+            <div class="row g-4">
+                <!-- Game 1 card -->
+                <div
+                    class="col-lg-12 col-md-12"
+                    data-aos="fade-up"
+                    data-aos-delay="100"
+                >
+                    <div class="card bg-dark text-white border-warning h-100">
+                        <div class="text-center game-header-wrapper">
+                            <button
+                                type="button"
+                                class="game-header-button open-project-modal"
+                                data-project="0"
+                            >
+                                <img
+                                    src="assets/img/game1header.png"
+                                    alt="Game 1 Header"
+                                    class="img-fluid rounded game-title-image"
+                                >
+                            </button>
+                        </div>
 
-            <div
-                class="col-lg-12 col-md-12"
-                data-aos="fade-up"
-                data-aos-delay="100"
-            >
-
-                <div class="card bg-dark text-white border-warning h-100">
-
-                    <div class="text-center game-header-wrapper">
-
-                        <button
-                            type="button"
-                            class="game-header-button open-project-modal"
-                            data-project="1"
+                        <div
+                            class="game-main-media"
+                            data-video-src="assets/video/gameplay1.mp4"
                         >
-
                             <img
-                                src="assets/img/game2header.png"
-                                alt="Game 2 Header"
-                                class="img-fluid rounded game-title-image"
+                                src="assets/img/game1static.png"
+                                class="game-preview-image"
+                                alt="Gameplay Preview"
                             >
 
-                        </button>
-
-                    </div>
-
-                    <div
-                        class="game-main-media"
-                        data-video-src="assets/video/gameplay2.mp4"
-                    >
-
-                        <img
-                            src="assets/img/game2static.png"
-                            class="game-preview-image"
-                            alt="Gameplay Preview"
-                        >
-
-                        <div class="play-video-button">
-                            ▶
+                            <div class="play-video-button">
+                                ▶
+                            </div>
                         </div>
 
-                    </div>
+                        <div class="card-body d-flex flex-column">
+                            <p>
+                                Hands-on experience in 2D game development with Unity, building expertise in systems architecture, Hack & Slash combat,
+                                advanced AI, custom editor tooling, workflow optimization, and technical project direction.
+                            </p>
 
-                    <div class="card-body d-flex flex-column">
+                            <div class="mt-4 mb-4">
+                                <h5 class="text-warning">
+                                    Systems Developed
+                                </h5>
 
-                        <p>
-                            Hands on experience in turn based tactical game development with Unity, building expertise in grid systems, custom pathfinding,
-                            tactical AI, strategic gameplay architecture, level editing tools, optimization, and UI/interface development.
-                        </p>
+                                <ul class="game-feature-list">
+                                    <li>Scalable gameplay architecture design and development</li>
+                                    <li>Custom Character Controller</li>
+                                    <li>Implementation Advanced AI systems built on State Machines</li>
+                                    <li>Hack & Slash combat system featuring combos and abilities</li>
+                                    <li>Custom level design tools and map editing utilities</li>
+                                    <li>Pixel Perfect pipeline and dynamic tileset management</li>
+                                    <li>Smooth camera system with dynamic global parallax</li>
+                                    <li>Scene management and productivity tooling</li>
+                                    <li>Economy, save, and localization systems VFX and audio integration with cross-platform and gamepad support</li>
+                                </ul>
 
-                        <div class="mt-4 mb-4">
+                                <h5 class="text-warning">
+                                    Additional roles held
+                                </h5>
 
-                            <h5 class="text-warning">
-                                Systems Developed
-                            </h5>
+                                <ul class="game-feature-list">
+                                    <li>Project Director</li>
+                                    <li>Gameplay Designer</li>
+                                    <li>Artistic and Technical Coordination</li>
+                                </ul>
+                            </div>
 
-                            <ul class="game-feature-list">
-
-                                <li>Grid systems and spatial optimization</li>
-                                <li>Custom pathfinding implementation</li>
-                                <li>Tactical AI for strategy games</li>
-                                <li>Turn-based gameplay architecture</li>
-                                <li>Combat, economy, and conquest systems</li>
-                                <li>Unit classes and progression mechanics</li>
-                                <li>Custom level editing tools</li>
-                                <li>Menu and UI development</li>
-                                <li>Gamepad input support</li>
-
-                            </ul>
-
-                        </div>
-
-                        <button
-                            type="button"
-                            class="btn btn-gold w-100 open-project-modal"
-                            data-project="1"
-                        >
-                            View Project
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <!-- GAME 3 -->
-
-            <div
-                class="col-lg-12 col-md-12"
-                data-aos="fade-up"
-                data-aos-delay="300"
-            >
-
-                <div class="card bg-dark text-white border-warning h-100">
-
-                    <div class="game-main-media">
-
-                        <img
-                            src="assets/img/game3static.png"
-                            class="game-preview-image"
-                            alt="Game 3 Preview"
-                        >
-
-                    </div>
-
-                    <div class="card-body d-flex flex-column">
-
-                        <p>
-                            Fast-paced futuristic racing experience optimized
-                            for browsers and mobile devices.
-                        </p>
-
-                        <div class="mt-auto">
-
-                            <a
-                                href="#"
+                            <button
+                                type="button"
                                 class="btn btn-gold w-100 open-project-modal"
-                                data-project="2"
+                                data-project="0"
                             >
                                 View Project
-                            </a>
-
+                            </button>
                         </div>
-
                     </div>
-
                 </div>
 
+                <!-- Game 2 card -->
+                <div
+                    class="col-lg-12 col-md-12"
+                    data-aos="fade-up"
+                    data-aos-delay="100"
+                >
+                    <div class="card bg-dark text-white border-warning h-100">
+                        <div class="text-center game-header-wrapper">
+                            <button
+                                type="button"
+                                class="game-header-button open-project-modal"
+                                data-project="1"
+                            >
+                                <img
+                                    src="assets/img/game2header.png"
+                                    alt="Game 2 Header"
+                                    class="img-fluid rounded game-title-image"
+                                >
+                            </button>
+                        </div>
+
+                        <div
+                            class="game-main-media"
+                            data-video-src="assets/video/gameplay2.mp4"
+                        >
+                            <img
+                                src="assets/img/game2static.png"
+                                class="game-preview-image"
+                                alt="Gameplay Preview"
+                            >
+
+                            <div class="play-video-button">
+                                ▶
+                            </div>
+                        </div>
+
+                        <div class="card-body d-flex flex-column">
+                            <p>
+                                Hands on experience in turn based tactical game development with Unity, building expertise in grid systems, custom pathfinding,
+                                tactical AI, strategic gameplay architecture, level editing tools, optimization, and UI/interface development.
+                            </p>
+
+                            <div class="mt-4 mb-4">
+                                <h5 class="text-warning">
+                                    Systems Developed
+                                </h5>
+
+                                <ul class="game-feature-list">
+                                    <li>Grid systems and spatial optimization</li>
+                                    <li>Custom pathfinding implementation</li>
+                                    <li>Tactical AI for strategy games</li>
+                                    <li>Turn-based gameplay architecture</li>
+                                    <li>Combat, economy, and conquest systems</li>
+                                    <li>Unit classes and progression mechanics</li>
+                                    <li>Custom level editing tools</li>
+                                    <li>Menu and UI development</li>
+                                    <li>Gamepad input support</li>
+                                </ul>
+                            </div>
+
+                            <button
+                                type="button"
+                                class="btn btn-gold w-100 open-project-modal"
+                                data-project="1"
+                            >
+                                View Project
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Game 3 card -->
+                <div
+                    class="col-lg-12 col-md-12"
+                    data-aos="fade-up"
+                    data-aos-delay="300"
+                >
+                    <div class="card bg-dark text-white border-warning h-100">
+                        <div class="game-main-media">
+                            <img
+                                src="assets/img/game3static.png"
+                                class="game-preview-image"
+                                alt="Game 3 Preview"
+                            >
+                        </div>
+
+                        <div class="card-body d-flex flex-column">
+                            <p>
+                                Fast-paced futuristic racing experience optimized
+                                for browsers and mobile devices.
+                            </p>
+
+                            <div class="mt-auto">
+                                <a
+                                    href="#"
+                                    class="btn btn-gold w-100 open-project-modal"
+                                    data-project="2"
+                                >
+                                    View Project
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dynamic project modal -->
+    <div
+        class="project-modal"
+        id="projectModal"
+        aria-hidden="true"
+    >
+        <div class="project-modal-overlay"></div>
+
+        <div class="project-modal-card">
+            <button
+                class="project-modal-close"
+                id="closeProjectModal"
+            >
+                ×
+            </button>
+
+            <div class="swiper modalProjectSwiper">
+                <div
+                    class="swiper-wrapper"
+                    id="modalSwiperWrapper"
+                ></div>
+
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
             </div>
 
-        </div>
-
-    </div>
-
-</section>
-
-<!-- PROJECT MODAL -->
-
-<div
-    class="project-modal"
-    id="projectModal"
-    aria-hidden="true"
->
-
-    <div class="project-modal-overlay"></div>
-
-    <div class="project-modal-card">
-
-        <button
-            class="project-modal-close"
-            id="closeProjectModal"
-        >
-            ×
-        </button>
-
-        <div class="swiper modalProjectSwiper">
+            <h2
+                class="mt-4"
+                id="modalProjectTitle"
+            ></h2>
 
             <div
-                class="swiper-wrapper"
-                id="modalSwiperWrapper"
+                class="project-modal-tags"
+                id="modalProjectTags"
             ></div>
 
-            <div class="swiper-button-prev"></div>
+            <div class="project-link-wrapper">
+                <a
+                    href="#"
+                    target="_blank"
+                    class="btn btn-gold"
+                    id="projectExternalLink"
+                >
+                    Go to Link
+                </a>
+            </div>
 
-            <div class="swiper-button-next"></div>
+            <div class="project-navigation-buttons mt-4">
+                <button
+                    type="button"
+                    class="btn btn-outline-light"
+                    id="previousProjectButton"
+                >
+                    Previous Project
+                </button>
 
+                <button
+                    type="button"
+                    class="btn btn-gold"
+                    id="nextProjectButton"
+                >
+                    Next Project
+                </button>
+            </div>
         </div>
-
-        <h2
-            class="mt-4"
-            id="modalProjectTitle"
-        ></h2>
-
-        <div
-            class="project-modal-tags"
-            id="modalProjectTags"
-        ></div>
-
-        <div class="project-link-wrapper">
-
-            <a
-                href="#"
-                target="_blank"
-                class="btn btn-gold"
-                id="projectExternalLink"
-            >
-                Go to Link
-            </a>
-
-        </div>
-
-        <div class="project-navigation-buttons mt-4">
-
-            <button
-                type="button"
-                class="btn btn-outline-light"
-                id="previousProjectButton"
-            >
-                Previous Project
-            </button>
-
-            <button
-                type="button"
-                class="btn btn-gold"
-                id="nextProjectButton"
-            >
-                Next Project
-            </button>
-
-        </div>
-
     </div>
 
-</div>
+    <!-- Shared footer component -->
+    <div id="footer"></div>
 
-<div id="footer"></div>
+    <!-- Vendor scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
-<script src="assets/js/main.js"></script>
-
+    <!-- Project scripts -->
+    <script src="assets/js/main.js"></script>
 </body>
+
 </html>
