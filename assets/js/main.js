@@ -171,7 +171,7 @@ const projects = [
     },
 
     {
-        title:"Advance Wars",
+        title:"Advance Wars Clone",
 
         link:"https://github.com/juancarlosuarez/Advance-Wars-Unity",
 
@@ -195,14 +195,14 @@ const projects = [
     },
 
     {
-        title:"Coffee Game",
+        title:"Everything fine, just had some coffee",
 
         link:null,
 
         tags:[
             "Unity",
-            "Racing",
-            "WebGL"
+            "C#",
+            "Gamejam"
         ],
 
         slides:[
