@@ -594,3 +594,232 @@ document.addEventListener("DOMContentLoaded", async () => {
     initGameVideoPreviews();
 
 });
+
+// =========================================
+// EMAILJS CONTACT FORM
+// =========================================
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    // =========================================
+    // EMAILJS INITIALIZATION
+    // =========================================
+
+    emailjs.init("DU196t1EmwXbjv4oF");
+
+    // =========================================
+    // CONTACT FORM ELEMENTS
+    // =========================================
+
+    const contactForm =
+        document.getElementById("contactForm");
+
+    const contactName =
+        document.getElementById("contactName");
+
+    const contactEmail =
+        document.getElementById("contactEmail");
+
+    const contactMessage =
+        document.getElementById("contactMessage");
+
+    // =========================================
+    // CONTACT MODAL ELEMENTS
+    // =========================================
+
+    const contactModal =
+        document.getElementById("contactModal");
+
+    const contactModalMessage =
+        document.getElementById("contactModalMessage");
+
+    const closeContactModal =
+        document.getElementById("closeContactModal");
+
+    const contactModalCloseButton =
+        document.getElementById("contactModalCloseButton");
+
+    // =========================================
+    // STOP IF CONTACT PAGE DOES NOT EXIST
+    // =========================================
+
+    if(
+        !contactForm ||
+        !contactName ||
+        !contactEmail ||
+        !contactMessage
+    ){
+        return;
+    }
+
+    // =========================================
+    // OPEN CONTACT MODAL
+    // =========================================
+
+    function openContactModal(message){
+
+        contactModalMessage.textContent =
+            message;
+
+        contactModal.classList.add("active");
+
+        document.body.classList.add("modal-open");
+
+    }
+
+    // =========================================
+    // CLOSE CONTACT MODAL
+    // =========================================
+
+    function closeModal(){
+
+        contactModal.classList.remove("active");
+
+        document.body.classList.remove("modal-open");
+
+    }
+
+    // =========================================
+    // MODAL CLOSE EVENTS
+    // =========================================
+
+    closeContactModal.addEventListener(
+        "click",
+        closeModal
+    );
+
+    contactModalCloseButton.addEventListener(
+        "click",
+        closeModal
+    );
+
+    // =========================================
+    // CLOSE MODAL WHEN CLICKING OVERLAY
+    // =========================================
+
+    contactModal.addEventListener("click", event => {
+
+        if(
+            event.target.classList.contains(
+                "project-modal-overlay"
+            )
+        ){
+
+            closeModal();
+
+        }
+
+    });
+
+    // =========================================
+    // CONTACT FORM SUBMIT
+    // =========================================
+
+    contactForm.addEventListener(
+        "submit",
+        async event => {
+
+            event.preventDefault();
+
+            // =========================================
+            // FORM VALUES
+            // =========================================
+
+            const name =
+                contactName.value.trim();
+
+            const email =
+                contactEmail.value.trim();
+
+            const message =
+                contactMessage.value.trim();
+
+            // =========================================
+            // VALIDATION
+            // =========================================
+
+            const missingFields = [];
+
+            if(!name){
+
+                missingFields.push("Name");
+
+            }
+
+            if(!email){
+
+                missingFields.push("Email");
+
+            }
+
+            if(!message){
+
+                missingFields.push("Message");
+
+            }
+
+            // =========================================
+            // SHOW VALIDATION ERROR
+            // =========================================
+
+            if(missingFields.length > 0){
+
+                openContactModal(
+                    `Please complete the following fields:\n\n- ${missingFields.join("\n- ")}`
+                );
+
+                return;
+
+            }
+
+            // =========================================
+            // SEND EMAIL
+            // =========================================
+
+            try{
+
+                await emailjs.send(
+
+                    "service_n7flo7d",
+
+                    "template_l9yi7dp",
+
+                    {
+                        from_name:name,
+                        from_email:email,
+                        message:message
+                    }
+
+                );
+
+                // =========================================
+                // SUCCESS MESSAGE
+                // =========================================
+
+                openContactModal(
+                    "Message sent successfully."
+                );
+
+                // =========================================
+                // RESET FORM
+                // =========================================
+
+                contactForm.reset();
+
+            }
+
+            catch(error){
+
+                console.error(error);
+
+                openContactModal(
+                    "An error occurred while sending the message. Please try again later."
+                );
+
+            }
+
+        }
+
+    );
+
+});
