@@ -24,7 +24,7 @@ const projects = Object.freeze([
     },
 
     {
-        title:"Advance Wars",
+        title:"Advance Wars Clone",
 
         link:"https://github.com/juancarlosuarez/Advance-Wars-Unity",
 
@@ -48,7 +48,7 @@ const projects = Object.freeze([
     },
 
     {
-        title:"Coffee Game",
+        title:"Everything fine, just had some coffee",
 
         link:null,
 
