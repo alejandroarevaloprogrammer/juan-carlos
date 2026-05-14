@@ -598,12 +598,21 @@ function initContactForm(){
     const contactModalCloseButton =
         $id("contactModalCloseButton");
 
+    // =========================================
+    // CONTACT STATUS MODAL
+    // =========================================
+
     function openContactModal(message){
 
         contactModalMessage.textContent =
             message;
 
         contactModal.classList.add("active");
+
+        contactModal.setAttribute(
+            "aria-hidden",
+            "false"
+        );
 
         document.body.classList.add(
             "modal-open"
@@ -614,6 +623,11 @@ function initContactForm(){
     function closeContactStatusModal(){
 
         contactModal.classList.remove("active");
+
+        contactModal.setAttribute(
+            "aria-hidden",
+            "true"
+        );
 
         document.body.classList.remove(
             "modal-open"
@@ -631,9 +645,15 @@ function initContactForm(){
         closeContactStatusModal
     );
 
+    // =========================================
+    // CONTACT FORM SUBMIT
+    // =========================================
+
     contactForm.addEventListener("submit", async event => {
 
         event.preventDefault();
+
+        // Native HTML5 validation
 
         if(!contactForm.checkValidity()){
 
@@ -651,37 +671,6 @@ function initContactForm(){
 
         const message =
             contactMessage.value.trim();
-
-        const missingFields =
-            [];
-
-        if(!name){
-
-            missingFields.push("Name");
-
-        }
-
-        if(!email){
-
-            missingFields.push("Email");
-
-        }
-
-        if(!message){
-
-            missingFields.push("Message");
-
-        }
-
-        if(missingFields.length > 0){
-
-            openContactModal(
-                `Please complete the following fields:\n\n- ${missingFields.join("\n- ")}`
-            );
-
-            return;
-
-        }
 
         try{
 
