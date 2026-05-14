@@ -125,8 +125,8 @@ I also worked on accessibility improvements, SEO optimization, GitHub Pages depl
 
 Created by Alejandro Arevalo Rojas.
 
-GitHub:
+GitHub:  
 https://github.com/alejandroarevaloprogrammer
 
-Portfolio:
+Portfolio:  
 https://alejandroarevalorojas.com/
