@@ -17,86 +17,87 @@
     <title>Contact</title>
 
     <meta
-    name="description"
-    content="Contact Juan Carlos Suarez for game development opportunities, freelance projects and collaborations."
+        name="description"
+        content="Contact Juan Carlos Suarez for game development opportunities, freelance projects and collaborations."
     >
 
     <meta
-    name="robots"
-    content="index, follow"
->
+        name="robots"
+        content="index, follow"
+    >
+
     <link
-    rel="canonical"
-    href="https://alejandroarevaloprogrammer.github.io/juan-carlos/contact.html"
->
+        rel="canonical"
+        href="https://alejandroarevaloprogrammer.github.io/juan-carlos-suarez-portfolio/contact.html"
+    >
 
     <!-- =========================================
-     OPEN GRAPH
-========================================= -->
+         OPEN GRAPH
+    ========================================== -->
 
-<meta
-    property="og:title"
-    content="Contact | Juan Carlos Suarez"
->
+    <meta
+        property="og:title"
+        content="Contact | Juan Carlos Suarez"
+    >
 
-<meta
-    property="og:description"
-    content="Contact Juan Carlos Suarez for freelance work, collaborations and game development opportunities."
->
+    <meta
+        property="og:description"
+        content="Contact Juan Carlos Suarez for freelance work, collaborations and game development opportunities."
+    >
 
-<meta
-    property="og:type"
-    content="website"
->
+    <meta
+        property="og:type"
+        content="website"
+    >
 
-<meta
-    property="og:url"
-    content="https://alejandroarevaloprogrammer.github.io/juan-carlos/contact.html"
->
+    <meta
+        property="og:url"
+        content="https://alejandroarevaloprogrammer.github.io/juan-carlos-suarez-portfolio/contact.html"
+    >
 
-<meta
-    property="og:image"
-    content="https://alejandroarevaloprogrammer.github.io/juan-carlos/assets/preview.png"
->
+    <meta
+        property="og:image"
+        content="https://alejandroarevaloprogrammer.github.io/juan-carlos-suarez-portfolio/assets/preview.png"
+    >
 
-<meta
-    property="og:image:alt"
-    content="Contact page for gameplay programmer and Unity developer Juan Carlos Suarez"
->
+    <meta
+        property="og:image:alt"
+        content="Contact page for gameplay programmer and Unity developer Juan Carlos Suarez"
+    >
 
-<meta
-    property="og:image:width"
-    content="1200"
->
+    <meta
+        property="og:image:width"
+        content="1200"
+    >
 
-<meta
-    property="og:image:height"
-    content="630"
->
+    <meta
+        property="og:image:height"
+        content="630"
+    >
 
-<!-- =========================================
-     TWITTER
-========================================= -->
+    <!-- =========================================
+         TWITTER
+    ========================================== -->
 
-<meta
-    name="twitter:card"
-    content="summary_large_image"
->
+    <meta
+        name="twitter:card"
+        content="summary_large_image"
+    >
 
-<meta
-    name="twitter:title"
-    content="Contact | Juan Carlos Suarez"
->
+    <meta
+        name="twitter:title"
+        content="Contact | Juan Carlos Suarez"
+    >
 
-<meta
-    name="twitter:description"
-    content="Contact Juan Carlos Suarez for freelance work, collaborations and game development opportunities."
->
+    <meta
+        name="twitter:description"
+        content="Contact Juan Carlos Suarez for freelance work, collaborations and game development opportunities."
+    >
 
-<meta
-    name="twitter:image"
-    content="https://alejandroarevaloprogrammer.github.io/juan-carlos/assets/preview.png"
->
+    <meta
+        name="twitter:image"
+        content="https://alejandroarevaloprogrammer.github.io/juan-carlos-suarez-portfolio/assets/preview.png"
+    >
 
     <!-- =========================================
          FAVICON
@@ -170,11 +171,22 @@
 
                         <div class="mb-3">
 
+                            <label
+                                for="contactName"
+                                class="form-label"
+                            >
+                                Name
+                            </label>
+
                             <input
                                 type="text"
                                 class="form-control"
                                 id="contactName"
+                                name="name"
                                 placeholder="Name"
+                                autocomplete="name"
+                                required
+                                aria-label="Your name"
                             >
 
                         </div>
@@ -183,11 +195,22 @@
 
                         <div class="mb-3">
 
+                            <label
+                                for="contactEmail"
+                                class="form-label"
+                            >
+                                Email
+                            </label>
+
                             <input
                                 type="email"
                                 class="form-control"
                                 id="contactEmail"
+                                name="email"
                                 placeholder="Email"
+                                autocomplete="email"
+                                required
+                                aria-label="Your email address"
                             >
 
                         </div>
@@ -196,11 +219,21 @@
 
                         <div class="mb-3">
 
+                            <label
+                                for="contactMessage"
+                                class="form-label"
+                            >
+                                Message
+                            </label>
+
                             <textarea
                                 class="form-control"
                                 id="contactMessage"
+                                name="message"
                                 rows="6"
                                 placeholder="Message"
+                                required
+                                aria-label="Your message"
                             ></textarea>
 
                         </div>
@@ -210,6 +243,7 @@
                         <button
                             type="submit"
                             class="btn btn-gold"
+                            aria-label="Send contact message"
                         >
                             Send Message
                         </button>
@@ -232,6 +266,9 @@
         class="project-modal"
         id="contactModal"
         aria-hidden="true"
+        aria-label="Contact status modal"
+        role="dialog"
+        aria-modal="true"
     >
 
         <!-- Modal overlay -->
@@ -245,8 +282,10 @@
             <!-- Close icon -->
 
             <button
+                type="button"
                 class="project-modal-close"
                 id="closeContactModal"
+                aria-label="Close contact status modal"
             >
                 ×
             </button>
@@ -275,6 +314,7 @@
                     type="button"
                     class="btn btn-gold"
                     id="contactModalCloseButton"
+                    aria-label="Close modal"
                 >
                     Close
                 </button>

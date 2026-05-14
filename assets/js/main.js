@@ -635,6 +635,14 @@ function initContactForm(){
 
         event.preventDefault();
 
+        if(!contactForm.checkValidity()){
+
+            contactForm.reportValidity();
+
+            return;
+
+        }
+
         const name =
             contactName.value.trim();
 
