@@ -1,40 +1,33 @@
-/**
- * Main JavaScript controller for the portfolio.
- *
- * Responsibilities:
- * - Load shared HTML components.
- * - Highlight the active navigation link.
- * - Initialize UI libraries.
- * - Manage project modals and media previews.
- */
+// =========================================
+// SHARED COMPONENT LOADER
+// =========================================
 
-/* =========================================
-   Shared component loader
-========================================= */
-
-/**
- * Loads an external HTML fragment into a target element.
- *
- * @param {string} id - Target element ID.
- * @param {string} path - Component path.
- */
 async function loadComponent(id, path){
 
-    const element = document.getElementById(id);
+    const element =
+        document.getElementById(id);
 
-    if(!element) return;
+    if(!element){
+        return;
+    }
 
     try{
 
-        const response = await fetch(path, {
-            cache:"no-cache"
-        });
+        const response =
+            await fetch(path, {
+                cache:"no-cache"
+            });
 
         if(!response.ok){
-            throw new Error(`Could not load component: ${path}`);
+
+            throw new Error(
+                `Could not load component: ${path}`
+            );
+
         }
 
-        element.innerHTML = await response.text();
+        element.innerHTML =
+            await response.text();
 
     }catch(error){
 
@@ -50,13 +43,31 @@ async function loadComponent(id, path){
 
 }
 
-/* =========================================
-   Navigation state
-========================================= */
+// =========================================
+// ASSET PATH HELPER
+// =========================================
 
-/**
- * Adds the active state to the current page link.
- */
+function getAssetPath(relativePath){
+
+    const currentScript =
+        document.currentScript ||
+        document.querySelector('script[src$="main.js"]');
+
+    if(!currentScript){
+        return relativePath;
+    }
+
+    return new URL(
+        relativePath,
+        currentScript.src
+    ).href;
+
+}
+
+// =========================================
+// ACTIVE NAVIGATION LINK
+// =========================================
+
 function setActiveLink(){
 
     const currentPage =
@@ -65,47 +76,50 @@ function setActiveLink(){
             .pop()
             .replace(".html", "") || "index";
 
-    document.querySelectorAll(".nav-link").forEach(link => {
+    document
+        .querySelectorAll(".nav-link")
+        .forEach(link => {
 
-        link.classList.remove("active");
+            link.classList.remove("active");
 
-        if(link.dataset.page === currentPage){
-            link.classList.add("active");
-        }
+            if(link.dataset.page === currentPage){
 
-    });
+                link.classList.add("active");
+
+            }
+
+        });
 
 }
 
-/* =========================================
-   Dynamic footer year
-========================================= */
+// =========================================
+// DYNAMIC COPYRIGHT YEAR
+// =========================================
 
-/**
- * Keeps the footer copyright year up to date.
- */
 function setCopyrightYear(){
 
     const yearElement =
-        document.getElementById("copyrightYear") ||
-        document.getElementById("copyright-year");
+        document.getElementById("copyright-year") ||
+        document.getElementById("copyrightYear");
 
-    if(!yearElement) return;
+    if(!yearElement){
+        return;
+    }
 
-    yearElement.textContent = new Date().getFullYear();
+    yearElement.textContent =
+        new Date().getFullYear();
 
 }
 
-/* =========================================
-   Animation initialization
-========================================= */
+// =========================================
+// AOS ANIMATIONS
+// =========================================
 
-/**
- * Initializes AOS animations when the library is available.
- */
 function initAOS(){
 
-    if(typeof AOS === "undefined") return;
+    if(typeof AOS === "undefined"){
+        return;
+    }
 
     AOS.init({
         duration:1000,
@@ -114,36 +128,43 @@ function initAOS(){
 
 }
 
-/* =========================================
-   Optional card swiper initialization
-========================================= */
+// =========================================
+// GIF SWIPER
+// =========================================
 
-/**
- * Initializes legacy GIF swipers if they exist on the page.
- */
 function initGifSwiper(){
 
-    if(typeof Swiper === "undefined") return;
+    if(typeof Swiper === "undefined"){
+        return;
+    }
 
-    document.querySelectorAll(".gameGifSwiper").forEach(swiperContainer => {
+    const swiperContainer =
+        document.querySelector(".gameGifSwiper");
 
-        new Swiper(swiperContainer, {
-            loop:true,
-            effect:"fade",
-            speed:1000,
-            autoplay:{
-                delay:3500,
-                disableOnInteraction:false
-            }
-        });
+    if(!swiperContainer){
+        return;
+    }
+
+    new Swiper(".gameGifSwiper", {
+
+        loop:true,
+
+        effect:"fade",
+
+        speed:1000,
+
+        autoplay:{
+            delay:3500,
+            disableOnInteraction:false
+        }
 
     });
 
 }
 
-/* =========================================
-   Project data
-========================================= */
+// =========================================
+// PROJECT DATA
+// =========================================
 
 const projects = [
 
@@ -171,7 +192,7 @@ const projects = [
     },
 
     {
-        title:"Advance Wars Clone",
+        title:"Advance Wars",
 
         link:"https://github.com/juancarlosuarez/Advance-Wars-Unity",
 
@@ -195,14 +216,14 @@ const projects = [
     },
 
     {
-        title:"Everything fine, just had some coffee",
+        title:"Coffee Game",
 
         link:null,
 
         tags:[
             "Unity",
-            "C#",
-            "Gamejam"
+            "Racing",
+            "WebGL"
         ],
 
         slides:[
@@ -216,52 +237,68 @@ const projects = [
 
 ];
 
+// =========================================
+// PROJECT MODAL STATE
+// =========================================
+
 let currentProjectIndex = 0;
+
 let projectSwiper = null;
 
-/* =========================================
-   Project modal
-========================================= */
+// =========================================
+// PROJECT MODAL INITIALIZATION
+// =========================================
 
-/**
- * Initializes all project modal triggers and controls.
- */
 function initProjectModal(){
 
-    const modal = document.getElementById("projectModal");
+    const modal =
+        document.getElementById("projectModal");
 
-    if(!modal) return;
+    if(!modal){
+        return;
+    }
 
-    document.querySelectorAll(".open-project-modal").forEach(button => {
+    document
+        .querySelectorAll(".open-project-modal")
+        .forEach(button => {
 
-        button.addEventListener("click", event => {
+            button.addEventListener("click", event => {
 
-            event.preventDefault();
+                event.preventDefault();
 
-            const projectIndex = Number.parseInt(button.dataset.project, 10);
+                const projectIndex =
+                    parseInt(
+                        button.dataset.project,
+                        10
+                    );
 
-            if(Number.isNaN(projectIndex)) return;
+                openProjectModal(projectIndex);
 
-            openProjectModal(projectIndex);
+            });
 
         });
 
-    });
-
     document
         .getElementById("closeProjectModal")
-        ?.addEventListener("click", closeProjectModal);
+        ?.addEventListener(
+            "click",
+            closeProjectModal
+        );
 
     document
         .querySelector(".project-modal-overlay")
-        ?.addEventListener("click", closeProjectModal);
+        ?.addEventListener(
+            "click",
+            closeProjectModal
+        );
 
     document
         .getElementById("nextProjectButton")
         ?.addEventListener("click", () => {
 
             openProjectModal(
-                (currentProjectIndex + 1) % projects.length
+                (currentProjectIndex + 1) %
+                projects.length
             );
 
         });
@@ -271,7 +308,10 @@ function initProjectModal(){
         ?.addEventListener("click", () => {
 
             openProjectModal(
-                (currentProjectIndex - 1 + projects.length) % projects.length
+                (
+                    currentProjectIndex - 1 +
+                    projects.length
+                ) % projects.length
             );
 
         });
@@ -282,95 +322,104 @@ function initProjectModal(){
             event.key === "Escape" &&
             modal.classList.contains("active")
         ){
+
             closeProjectModal();
+
         }
 
     });
 
 }
 
-/**
- * Opens the modal and renders the selected project.
- *
- * @param {number} index - Project index.
- */
+// =========================================
+// OPEN PROJECT MODAL
+// =========================================
+
 function openProjectModal(index){
 
-    const project = projects[index];
+    currentProjectIndex =
+        index;
 
-    if(!project) return;
+    const project =
+        projects[index];
 
-    currentProjectIndex = index;
+    if(!project){
+        return;
+    }
 
-    renderProjectTitle(project);
-    renderProjectTags(project);
-    renderProjectSlides(project);
-    renderProjectLink(project);
-    resetProjectSwiper();
-    showProjectModal();
+    const title =
+        document.getElementById("modalProjectTitle");
 
-}
+    const tags =
+        document.getElementById("modalProjectTags");
 
-/**
- * Renders the current project title.
- *
- * @param {object} project - Project data.
- */
-function renderProjectTitle(project){
+    const wrapper =
+        document.getElementById("modalSwiperWrapper");
 
-    const titleElement = document.getElementById("modalProjectTitle");
+    const externalLinkButton =
+        document.getElementById("projectExternalLink");
 
-    if(!titleElement) return;
+    const modal =
+        document.getElementById("projectModal");
 
-    titleElement.textContent = project.title;
+    if(
+        !title ||
+        !tags ||
+        !wrapper ||
+        !modal
+    ){
+        return;
+    }
 
-}
+    title.textContent =
+        project.title;
 
-/**
- * Renders the current project tag list.
- *
- * @param {object} project - Project data.
- */
-function renderProjectTags(project){
+    if(externalLinkButton){
 
-    const tagsContainer = document.getElementById("modalProjectTags");
+        if(project.link){
 
-    if(!tagsContainer) return;
+            externalLinkButton.href =
+                project.link;
 
-    tagsContainer.innerHTML = "";
+            externalLinkButton.style.display =
+                "flex";
+
+        }else{
+
+            externalLinkButton.style.display =
+                "none";
+
+        }
+
+    }
+
+    tags.innerHTML =
+        "";
 
     project.tags.forEach(tag => {
 
-        const tagElement = document.createElement("span");
+        const span =
+            document.createElement("span");
 
-        tagElement.textContent = tag;
+        span.textContent =
+            tag;
 
-        tagsContainer.appendChild(tagElement);
+        tags.appendChild(span);
 
     });
 
-}
-
-/**
- * Renders the current project carousel slides.
- *
- * @param {object} project - Project data.
- */
-function renderProjectSlides(project){
-
-    const wrapper = document.getElementById("modalSwiperWrapper");
-
-    if(!wrapper) return;
-
-    wrapper.innerHTML = "";
+    wrapper.innerHTML =
+        "";
 
     project.slides.forEach(slide => {
 
-        const slideElement = document.createElement("div");
+        const div =
+            document.createElement("div");
 
-        slideElement.className = "swiper-slide";
+        div.className =
+            "swiper-slide";
 
-        slideElement.innerHTML = `
+        div.innerHTML = `
             <img
                 src="${slide}"
                 class="project-slide-image"
@@ -378,241 +427,223 @@ function renderProjectSlides(project){
             >
         `;
 
-        wrapper.appendChild(slideElement);
+        wrapper.appendChild(div);
 
     });
-
-}
-
-/**
- * Shows or hides the external project link.
- *
- * @param {object} project - Project data.
- */
-function renderProjectLink(project){
-
-    const externalLinkButton = document.getElementById("projectExternalLink");
-
-    if(!externalLinkButton) return;
-
-    if(project.link){
-
-        externalLinkButton.href = project.link;
-        externalLinkButton.style.display = "flex";
-
-    }else{
-
-        externalLinkButton.style.display = "none";
-
-    }
-
-}
-
-/**
- * Recreates the Swiper instance after replacing slide content.
- */
-function resetProjectSwiper(){
-
-    if(typeof Swiper === "undefined") return;
 
     if(projectSwiper){
 
-        projectSwiper.destroy(true, true);
+        projectSwiper.destroy(
+            true,
+            true
+        );
 
     }
 
-    projectSwiper = new Swiper(".modalProjectSwiper", {
-        loop:true,
-        speed:900,
-        autoplay:{
-            delay:3500,
-            disableOnInteraction:false
-        },
-        navigation:{
-            nextEl:".swiper-button-next",
-            prevEl:".swiper-button-prev"
+    if(typeof Swiper !== "undefined"){
+
+        projectSwiper =
+            new Swiper(".modalProjectSwiper", {
+
+                loop:true,
+
+                speed:900,
+
+                autoplay:{
+                    delay:3500,
+                    disableOnInteraction:false
+                },
+
+                navigation:{
+                    nextEl:".swiper-button-next",
+                    prevEl:".swiper-button-prev"
+                }
+
+            });
+
+    }
+
+    modal.classList.add("active");
+
+    modal.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+    document.body.classList.add(
+        "modal-open"
+    );
+
+}
+
+// =========================================
+// CLOSE PROJECT MODAL
+// =========================================
+
+function closeProjectModal(){
+
+    const modal =
+        document.getElementById("projectModal");
+
+    if(!modal){
+        return;
+    }
+
+    modal.classList.remove("active");
+
+    modal.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+    document.body.classList.remove(
+        "modal-open"
+    );
+
+}
+
+// =========================================
+// LEGACY VIDEO PREVIEW
+// =========================================
+
+function initLegacyVideoPreview(
+    playButtonId,
+    videoId,
+    thumbnailId
+){
+
+    const playButton =
+        document.getElementById(playButtonId);
+
+    const video =
+        document.getElementById(videoId);
+
+    const thumbnail =
+        document.getElementById(thumbnailId);
+
+    if(
+        !playButton ||
+        !video ||
+        !thumbnail
+    ){
+        return;
+    }
+
+    playButton.addEventListener("click", async () => {
+
+        thumbnail.style.display =
+            "none";
+
+        video.style.display =
+            "block";
+
+        video.controls =
+            true;
+
+        try{
+
+            await video.play();
+
+        }catch(error){
+
+            console.error(
+                "Video playback failed:",
+                error
+            );
+
         }
+
+    });
+
+    video.addEventListener("ended", async () => {
+
+        try{
+
+            if(document.fullscreenElement){
+
+                await document.exitFullscreen();
+
+            }
+
+            if(video.webkitDisplayingFullscreen){
+
+                video.webkitExitFullscreen();
+
+            }
+
+        }catch(error){
+
+            console.error(
+                "Fullscreen exit failed:",
+                error
+            );
+
+        }
+
+        video.pause();
+
+        video.currentTime =
+            0;
+
+        video.style.display =
+            "none";
+
+        video.controls =
+            false;
+
+        thumbnail.style.display =
+            "block";
+
     });
 
 }
 
-/**
- * Displays the project modal.
- */
-function showProjectModal(){
+// =========================================
+// GAME VIDEO INITIALIZATION
+// =========================================
 
-    const modal = document.getElementById("projectModal");
-
-    if(!modal) return;
-
-    modal.classList.add("active");
-    modal.setAttribute("aria-hidden", "false");
-
-    document.body.classList.add("modal-open");
-
-}
-
-/**
- * Closes the project modal.
- */
-function closeProjectModal(){
-
-    const modal = document.getElementById("projectModal");
-
-    if(!modal) return;
-
-    modal.classList.remove("active");
-    modal.setAttribute("aria-hidden", "true");
-
-    document.body.classList.remove("modal-open");
-
-}
-
-/* =========================================
-   Game video previews
-========================================= */
-
-/**
- * Initializes click-to-play video previews.
- *
- * Videos are created only after user interaction to prevent
- * native mobile browsers from drawing their default play overlays.
- */
 function initGameVideoPreviews(){
 
-    document
-        .querySelectorAll(".game-main-media[data-video-src]")
-        .forEach(media => {
-
-            const playButton = media.querySelector(".play-video-button");
-            const previewImage = media.querySelector(".game-preview-image");
-            const videoSrc = media.dataset.videoSrc;
-
-            if(!playButton || !previewImage || !videoSrc) return;
-
-            playButton.addEventListener("click", () => {
-
-                const video = createPreviewVideo(videoSrc);
-
-                previewImage.style.display = "none";
-                playButton.style.display = "none";
-
-                media.appendChild(video);
-
-                video.play();
-
-                video.addEventListener("ended", async () => {
-
-                    await safelyExitFullscreen(video);
-
-                    video.pause();
-                    video.remove();
-
-                    previewImage.style.display = "block";
-                    playButton.style.display = "flex";
-
-                });
-
-            });
-
-        });
-
-}
-
-/**
- * Creates a video element for a game preview.
- *
- * @param {string} src - Video source URL.
- * @returns {HTMLVideoElement}
- */
-function createPreviewVideo(src){
-
-    const video = document.createElement("video");
-
-    video.className = "game-main-video";
-    video.src = src;
-    video.controls = true;
-    video.playsInline = true;
-
-    video.setAttribute("controlslist", "nodownload noplaybackrate");
-    video.setAttribute("disablepictureinpicture", "");
-
-    return video;
-
-}
-
-/**
- * Safely exits fullscreen mode before removing a video element.
- *
- * @param {HTMLVideoElement} video - Active video element.
- */
-async function safelyExitFullscreen(video){
-
-    try{
-
-        if(document.fullscreenElement){
-
-            await document.exitFullscreen();
-
-        }
-
-        if(video.webkitDisplayingFullscreen){
-
-            video.webkitExitFullscreen();
-
-        }
-
-    }catch(error){
-
-        console.log(error);
-
-    }
-
-}
-
-/* =========================================
-   Application bootstrap
-========================================= */
-
-document.addEventListener("DOMContentLoaded", async () => {
-
-    await loadComponent(
-        "navbar",
-        "assets/components/navbar.html"
+    initLegacyVideoPreview(
+        "playVideoButton",
+        "gameVideo",
+        "videoThumbnail"
     );
 
-    await loadComponent(
-        "footer",
-        "assets/components/footer.html"
+    initLegacyVideoPreview(
+        "playVideoButton1",
+        "gameVideo1",
+        "videoThumbnail1"
     );
 
-    setActiveLink();
-    setCopyrightYear();
-    initAOS();
-    initGifSwiper();
-    initProjectModal();
-    initGameVideoPreviews();
-
-});
+}
 
 // =========================================
-// EMAILJS CONTACT FORM
+// CONTACT FORM SUBMIT
 // =========================================
 
-document.addEventListener("DOMContentLoaded", () => {
-
-    // =========================================
-    // EMAILJS INITIALIZATION
-    // =========================================
-
-    emailjs.init("DU196t1EmwXbjv4oF");
-
-    // =========================================
-    // CONTACT FORM ELEMENTS
-    // =========================================
+function initContactForm(){
 
     const contactForm =
         document.getElementById("contactForm");
+
+    if(!contactForm){
+        return;
+    }
+
+    if(typeof emailjs === "undefined"){
+
+        console.warn(
+            "EmailJS is not available."
+        );
+
+        return;
+
+    }
+
+    emailjs.init(
+        "DU196t1EmwXbjv4oF"
+    );
 
     const contactName =
         document.getElementById("contactName");
@@ -622,10 +653,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const contactMessage =
         document.getElementById("contactMessage");
-
-    // =========================================
-    // CONTACT MODAL ELEMENTS
-    // =========================================
 
     const contactModal =
         document.getElementById("contactModal");
@@ -639,23 +666,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const contactModalCloseButton =
         document.getElementById("contactModalCloseButton");
 
-    // =========================================
-    // STOP IF CONTACT PAGE DOES NOT EXIST
-    // =========================================
-
-    if(
-        !contactForm ||
-        !contactName ||
-        !contactEmail ||
-        !contactMessage
-    ){
-        return;
-    }
-
-    // =========================================
-    // OPEN CONTACT MODAL
-    // =========================================
-
     function openContactModal(message){
 
         contactModalMessage.textContent =
@@ -663,163 +673,139 @@ document.addEventListener("DOMContentLoaded", () => {
 
         contactModal.classList.add("active");
 
-        document.body.classList.add("modal-open");
+        document.body.classList.add(
+            "modal-open"
+        );
 
     }
 
-    // =========================================
-    // CLOSE CONTACT MODAL
-    // =========================================
-
-    function closeModal(){
+    function closeContactStatusModal(){
 
         contactModal.classList.remove("active");
 
-        document.body.classList.remove("modal-open");
+        document.body.classList.remove(
+            "modal-open"
+        );
 
     }
 
-    // =========================================
-    // MODAL CLOSE EVENTS
-    // =========================================
-
-    closeContactModal.addEventListener(
+    closeContactModal?.addEventListener(
         "click",
-        closeModal
+        closeContactStatusModal
     );
 
-    contactModalCloseButton.addEventListener(
+    contactModalCloseButton?.addEventListener(
         "click",
-        closeModal
+        closeContactStatusModal
     );
 
-    // =========================================
-    // CLOSE MODAL WHEN CLICKING OVERLAY
-    // =========================================
+    contactForm.addEventListener("submit", async event => {
 
-    contactModal.addEventListener("click", event => {
+        event.preventDefault();
 
-        if(
-            event.target.classList.contains(
-                "project-modal-overlay"
-            )
-        ){
+        const name =
+            contactName.value.trim();
 
-            closeModal();
+        const email =
+            contactEmail.value.trim();
+
+        const message =
+            contactMessage.value.trim();
+
+        const missingFields =
+            [];
+
+        if(!name){
+
+            missingFields.push("Name");
+
+        }
+
+        if(!email){
+
+            missingFields.push("Email");
+
+        }
+
+        if(!message){
+
+            missingFields.push("Message");
+
+        }
+
+        if(missingFields.length > 0){
+
+            openContactModal(
+                `Please complete the following fields:\n\n- ${missingFields.join("\n- ")}`
+            );
+
+            return;
+
+        }
+
+        try{
+
+            await emailjs.send(
+                "service_n7flo7d",
+                "template_l9yi7dp",
+                {
+                    from_name:name,
+                    from_email:email,
+                    message:message
+                }
+            );
+
+            openContactModal(
+                "Message sent successfully."
+            );
+
+            contactForm.reset();
+
+        }catch(error){
+
+            console.error(
+                "EmailJS error:",
+                error
+            );
+
+            openContactModal(
+                "An error occurred while sending the message."
+            );
 
         }
 
     });
 
-    // =========================================
-    // CONTACT FORM SUBMIT
-    // =========================================
+}
 
-    contactForm.addEventListener(
-        "submit",
-        async event => {
+// =========================================
+// APPLICATION BOOTSTRAP
+// =========================================
 
-            event.preventDefault();
+document.addEventListener("DOMContentLoaded", async () => {
 
-            // =========================================
-            // FORM VALUES
-            // =========================================
-
-            const name =
-                contactName.value.trim();
-
-            const email =
-                contactEmail.value.trim();
-
-            const message =
-                contactMessage.value.trim();
-
-            // =========================================
-            // VALIDATION
-            // =========================================
-
-            const missingFields = [];
-
-            if(!name){
-
-                missingFields.push("Name");
-
-            }
-
-            if(!email){
-
-                missingFields.push("Email");
-
-            }
-
-            if(!message){
-
-                missingFields.push("Message");
-
-            }
-
-            // =========================================
-            // SHOW VALIDATION ERROR
-            // =========================================
-
-            if(missingFields.length > 0){
-
-                openContactModal(
-                    `Please complete the following fields:\n\n- ${missingFields.join("\n- ")}`
-                );
-
-                return;
-
-            }
-
-            // =========================================
-            // SEND EMAIL
-            // =========================================
-
-            try{
-
-                await emailjs.send(
-
-                    "service_n7flo7d",
-
-                    "template_l9yi7dp",
-
-                    {
-                        from_name:name,
-                        from_email:email,
-                        message:message
-                    }
-
-                );
-
-                // =========================================
-                // SUCCESS MESSAGE
-                // =========================================
-
-                openContactModal(
-                    "Message sent successfully."
-                );
-
-                // =========================================
-                // RESET FORM
-                // =========================================
-
-                contactForm.reset();
-
-            }
-
-            catch(error){
-
-                console.error(error);
-
-                openContactModal(
-                    "An error occurred while sending the message. Please try again later."
-                );
-
-            }
-
-        }
-
+    await loadComponent(
+        "navbar",
+        getAssetPath("../components/navbar.html")
     );
+
+    await loadComponent(
+        "footer",
+        getAssetPath("../components/footer.html")
+    );
+
+    setActiveLink();
+
+    setCopyrightYear();
+
+    initAOS();
+
+    initGifSwiper();
+
+    initProjectModal();
+
+    initGameVideoPreviews();
+
+    initContactForm();
 
 });
