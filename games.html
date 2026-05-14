@@ -155,9 +155,7 @@
 
         <div class="container">
 
-            <div
-                class="row g-4"
-            >
+            <div class="row g-4">
 
                 <!-- =========================================
                      GAME 1
@@ -177,12 +175,15 @@
                                 type="button"
                                 class="game-header-button open-project-modal"
                                 data-project="0"
+                                aria-label="Open Tsukiyo project details"
                             >
 
                                 <img
                                     src="assets/img/game1header.png"
-                                    alt="Game 1 Header"
+                                    alt="Tsukiyo Battle Doll project header"
                                     class="img-fluid rounded game-title-image"
+                                    loading="lazy"
+                                    decoding="async"
                                 >
 
                             </button>
@@ -205,15 +206,19 @@
                                 <img
                                     src="assets/img/game1static.png"
                                     class="game-preview-image"
-                                    alt="Gameplay Preview"
+                                    alt="Tsukiyo gameplay preview"
+                                    loading="lazy"
+                                    decoding="async"
                                 >
 
-                                <div
+                                <button
+                                    type="button"
                                     class="play-video-button"
                                     id="playVideoButton"
+                                    aria-label="Play Tsukiyo gameplay video"
                                 >
                                     ▶
-                                </div>
+                                </button>
 
                             </div>
 
@@ -227,6 +232,7 @@
                                 controlslist="nodownload noplaybackrate"
                                 disablepictureinpicture
                                 x-webkit-airplay="deny"
+                                poster="assets/img/game1static.png"
                             >
 
                                 <source
@@ -293,6 +299,7 @@
                                 type="button"
                                 class="btn btn-gold w-100 open-project-modal"
                                 data-project="0"
+                                aria-label="View Tsukiyo project"
                             >
                                 View Project
                             </button>
@@ -321,12 +328,15 @@
                                 type="button"
                                 class="game-header-button open-project-modal"
                                 data-project="1"
+                                aria-label="Open Advance Wars project details"
                             >
 
                                 <img
                                     src="assets/img/game2header.png"
-                                    alt="Game 2 Header"
+                                    alt="Advance Wars project header"
                                     class="img-fluid rounded game-title-image"
+                                    loading="lazy"
+                                    decoding="async"
                                 >
 
                             </button>
@@ -349,15 +359,19 @@
                                 <img
                                     src="assets/img/game2static.png"
                                     class="game-preview-image"
-                                    alt="Gameplay Preview"
+                                    alt="Advance Wars gameplay preview"
+                                    loading="lazy"
+                                    decoding="async"
                                 >
 
-                                <div
+                                <button
+                                    type="button"
                                     class="play-video-button"
                                     id="playVideoButton1"
+                                    aria-label="Play Advance Wars gameplay video"
                                 >
                                     ▶
-                                </div>
+                                </button>
 
                             </div>
 
@@ -371,6 +385,7 @@
                                 controlslist="nodownload noplaybackrate"
                                 disablepictureinpicture
                                 x-webkit-airplay="deny"
+                                poster="assets/img/game2static.png"
                             >
 
                                 <source
@@ -423,6 +438,7 @@
                                 type="button"
                                 class="btn btn-gold w-100 open-project-modal"
                                 data-project="1"
+                                aria-label="View Advance Wars project"
                             >
                                 View Project
                             </button>
@@ -450,7 +466,9 @@
                             <img
                                 src="assets/img/game3static.png"
                                 class="game-preview-image"
-                                alt="Game 3 Preview"
+                                alt="Coffee Game gameplay preview"
+                                loading="lazy"
+                                decoding="async"
                             >
 
                         </div>
@@ -487,13 +505,14 @@
 
                             <div class="mt-auto">
 
-                                <a
-                                    href="#"
+                                <button
+                                    type="button"
                                     class="btn btn-gold w-100 open-project-modal"
                                     data-project="2"
+                                    aria-label="View Coffee Game project"
                                 >
                                     View Project
-                                </a>
+                                </button>
 
                             </div>
 
@@ -517,6 +536,9 @@
         class="project-modal"
         id="projectModal"
         aria-hidden="true"
+        aria-label="Project details modal"
+        role="dialog"
+        aria-modal="true"
     >
 
         <div class="project-modal-overlay"></div>
@@ -524,8 +546,10 @@
         <div class="project-modal-card">
 
             <button
+                type="button"
                 class="project-modal-close"
                 id="closeProjectModal"
+                aria-label="Close project modal"
             >
                 ×
             </button>
@@ -560,6 +584,7 @@
                     target="_blank"
                     class="btn btn-gold"
                     id="projectExternalLink"
+                    rel="noopener noreferrer"
                 >
                     Go to Link
                 </a>
@@ -572,6 +597,7 @@
                     type="button"
                     class="btn btn-outline-light"
                     id="previousProjectButton"
+                    aria-label="View previous project"
                 >
                     Previous Project
                 </button>
@@ -580,6 +606,7 @@
                     type="button"
                     class="btn btn-gold"
                     id="nextProjectButton"
+                    aria-label="View next project"
                 >
                     Next Project
                 </button>
