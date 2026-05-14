@@ -53,9 +53,9 @@ const projects = Object.freeze([
         link:null,
 
         tags:[
+            "C#",
             "Unity",
-            "Racing",
-            "WebGL"
+            "Gamejam"
         ],
 
         slides:[
