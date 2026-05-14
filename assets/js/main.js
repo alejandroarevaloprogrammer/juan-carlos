@@ -1,11 +1,18 @@
 // =========================================
+// DOM HELPERS
+// =========================================
+
+const $id = id =>
+    document.getElementById(id);
+
+// =========================================
 // SHARED COMPONENT LOADER
 // =========================================
 
 async function loadComponent(id, path){
 
     const element =
-        document.getElementById(id);
+        $id(id);
 
     if(!element){
         return;
@@ -31,7 +38,10 @@ async function loadComponent(id, path){
 
     }catch(error){
 
-        console.error(error);
+        console.error(
+            "Component loader error:",
+            error
+        );
 
         element.innerHTML = `
             <div class="container py-3 text-center text-warning">
@@ -99,8 +109,8 @@ function setActiveLink(){
 function setCopyrightYear(){
 
     const yearElement =
-        document.getElementById("copyright-year") ||
-        document.getElementById("copyrightYear");
+        $id("copyright-year") ||
+        $id("copyrightYear");
 
     if(!yearElement){
         return;
@@ -163,81 +173,6 @@ function initGifSwiper(){
 }
 
 // =========================================
-// PROJECT DATA
-// =========================================
-
-const projects = [
-
-    {
-        title:"Tsukiyo: Battle Doll",
-
-        link:"https://store.steampowered.com/app/4204640/Tsukiyo_Battle_Doll/",
-
-        tags:[
-            "C#",
-            "Unity",
-            "Platform",
-            "Metroidvania",
-            "Hack&Slash"
-        ],
-
-        slides:[
-            "assets/gifs/tsukiyo/gameplay1.gif",
-            "assets/gifs/tsukiyo/gameplay2.gif",
-            "assets/gifs/tsukiyo/gameplay3.gif",
-            "assets/gifs/tsukiyo/gameplay4.gif",
-            "assets/gifs/tsukiyo/gameplay5.gif",
-            "assets/gifs/tsukiyo/gameplay6.gif"
-        ]
-    },
-
-    {
-        title:"Advance Wars",
-
-        link:"https://github.com/juancarlosuarez/Advance-Wars-Unity",
-
-        tags:[
-            "C#",
-            "Unity",
-            "Strategy",
-            "Tactic Game"
-        ],
-
-        slides:[
-            "assets/gifs/advancewars/gameplay1.gif",
-            "assets/gifs/advancewars/gameplay2.gif",
-            "assets/gifs/advancewars/gameplay3.gif",
-            "assets/gifs/advancewars/gameplay4.gif",
-            "assets/gifs/advancewars/gameplay5.gif",
-            "assets/gifs/advancewars/gameplay6.gif",
-            "assets/gifs/advancewars/gameplay7.gif",
-            "assets/gifs/advancewars/gameplay8.gif"
-        ]
-    },
-
-    {
-        title:"Coffee Game",
-
-        link:null,
-
-        tags:[
-            "Unity",
-            "Racing",
-            "WebGL"
-        ],
-
-        slides:[
-            "assets/img/coffee/gameplay1.png",
-            "assets/img/coffee/gameplay2.png",
-            "assets/img/coffee/gameplay3.png",
-            "assets/img/coffee/gameplay4.png",
-            "assets/img/coffee/gameplay5.png"
-        ]
-    }
-
-];
-
-// =========================================
 // PROJECT MODAL STATE
 // =========================================
 
@@ -252,7 +187,7 @@ let projectSwiper = null;
 function initProjectModal(){
 
     const modal =
-        document.getElementById("projectModal");
+        $id("projectModal");
 
     if(!modal){
         return;
@@ -278,8 +213,7 @@ function initProjectModal(){
 
         });
 
-    document
-        .getElementById("closeProjectModal")
+    $id("closeProjectModal")
         ?.addEventListener(
             "click",
             closeProjectModal
@@ -292,8 +226,7 @@ function initProjectModal(){
             closeProjectModal
         );
 
-    document
-        .getElementById("nextProjectButton")
+    $id("nextProjectButton")
         ?.addEventListener("click", () => {
 
             openProjectModal(
@@ -303,8 +236,7 @@ function initProjectModal(){
 
         });
 
-    document
-        .getElementById("previousProjectButton")
+    $id("previousProjectButton")
         ?.addEventListener("click", () => {
 
             openProjectModal(
@@ -348,19 +280,19 @@ function openProjectModal(index){
     }
 
     const title =
-        document.getElementById("modalProjectTitle");
+        $id("modalProjectTitle");
 
     const tags =
-        document.getElementById("modalProjectTags");
+        $id("modalProjectTags");
 
     const wrapper =
-        document.getElementById("modalSwiperWrapper");
+        $id("modalSwiperWrapper");
 
     const externalLinkButton =
-        document.getElementById("projectExternalLink");
+        $id("projectExternalLink");
 
     const modal =
-        document.getElementById("projectModal");
+        $id("projectModal");
 
     if(
         !title ||
@@ -483,7 +415,7 @@ function openProjectModal(index){
 function closeProjectModal(){
 
     const modal =
-        document.getElementById("projectModal");
+        $id("projectModal");
 
     if(!modal){
         return;
@@ -513,13 +445,13 @@ function initLegacyVideoPreview(
 ){
 
     const playButton =
-        document.getElementById(playButtonId);
+        $id(playButtonId);
 
     const video =
-        document.getElementById(videoId);
+        $id(videoId);
 
     const thumbnail =
-        document.getElementById(thumbnailId);
+        $id(thumbnailId);
 
     if(
         !playButton ||
@@ -625,7 +557,7 @@ function initGameVideoPreviews(){
 function initContactForm(){
 
     const contactForm =
-        document.getElementById("contactForm");
+        $id("contactForm");
 
     if(!contactForm){
         return;
@@ -646,25 +578,25 @@ function initContactForm(){
     );
 
     const contactName =
-        document.getElementById("contactName");
+        $id("contactName");
 
     const contactEmail =
-        document.getElementById("contactEmail");
+        $id("contactEmail");
 
     const contactMessage =
-        document.getElementById("contactMessage");
+        $id("contactMessage");
 
     const contactModal =
-        document.getElementById("contactModal");
+        $id("contactModal");
 
     const contactModalMessage =
-        document.getElementById("contactModalMessage");
+        $id("contactModalMessage");
 
     const closeContactModal =
-        document.getElementById("closeContactModal");
+        $id("closeContactModal");
 
     const contactModalCloseButton =
-        document.getElementById("contactModalCloseButton");
+        $id("contactModalCloseButton");
 
     function openContactModal(message){
 
