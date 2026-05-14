@@ -2,5 +2,4 @@ User-agent: *
 
 Allow: /
 
-Sitemap:
-https://alejandroarevaloprogrammer.github.io/juan-carlos/sitemap.xml
+Sitemap: https://alejandroarevaloprogrammer.github.io/juan-carlos-suarez-portfolio/sitemap.xml
