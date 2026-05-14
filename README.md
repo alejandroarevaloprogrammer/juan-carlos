@@ -1,8 +1,6 @@
-# Juan Carlos Suarez - Gameplay Programmer Portfolio
+# Juan Carlos Suarez Portfolio Website
 
-Version: 1.0
-
-Professional gameplay programming portfolio focused on Unity development, AI systems, combat mechanics, tactical gameplay architecture and technical game design.
+Responsive portfolio website developed for a gameplay programmer to showcase projects, gameplay systems and technical game development experience through an interactive and modern front-end experience.
 
 ---
 
@@ -16,15 +14,15 @@ https://alejandroarevaloprogrammer.github.io/juan-carlos-suarez-portfolio/
 
 ![Portfolio Preview](assets/preview.png)
 
-This image is used for:
-- Open Graph previews
-- Twitter cards
-- Discord previews
-- LinkedIn previews
-- WhatsApp previews
+---
 
-Recommended resolution:
-1200x630
+# Overview
+
+This project was developed as a professional portfolio website focused on presenting game development projects through responsive layouts, interactive media systems and modular front-end architecture.
+
+The website includes dynamic project modals, gameplay video previews, reusable UI components and SEO optimized metadata while maintaining full compatibility with GitHub Pages deployment.
+
+Special attention was given to accessibility, responsive behavior, semantic HTML structure and clean code organization.
 
 ---
 
@@ -32,15 +30,16 @@ Recommended resolution:
 
 - Responsive modern portfolio design
 - Dynamic navbar and footer components
-- Custom project modal system
-- Swiper.js integration
-- Interactive gameplay video previews
-- Mobile and tablet optimized
+- Interactive project modal system
+- Gameplay video preview integration
+- Swiper.js gallery navigation
+- Mobile and tablet optimized layouts
 - EmailJS contact form integration
-- SEO optimized structure
-- Open Graph support
-- Twitter Card support
-- GitHub Pages compatible
+- SEO optimized metadata
+- Open Graph and Twitter Card support
+- Semantic HTML structure
+- Accessibility improvements
+- GitHub Pages compatible architecture
 
 ---
 
@@ -53,29 +52,6 @@ Recommended resolution:
 - Swiper.js
 - AOS Animation Library
 - EmailJS
-
----
-
-# Local Development
-
-Use VSCode Live Server:
-
-1. Open the project folder in VSCode.
-2. Right click `index.html`.
-3. Select `Open with Live Server`.
-
-Do not open HTML files directly using `file://`
-because navbar and footer components are loaded dynamically using JavaScript `fetch()`.
-
----
-
-# GitHub Pages
-
-This project is fully compatible with GitHub Pages.
-
-Main URL:
-
-https://alejandroarevaloprogrammer.github.io/juan-carlos-suarez-portfolio/
 
 ---
 
@@ -100,7 +76,8 @@ assets/
 │   └── style.css
 │
 ├── js/
-│   └── main.js
+│   ├── main.js
+│   └── projects.js
 │
 ├── img/
 ├── gifs/
@@ -108,3 +85,48 @@ assets/
 │
 ├── favicon.ico
 └── preview.png
+```
+
+---
+
+# Local Development
+
+Use VSCode Live Server:
+
+1. Open the project folder in VSCode
+2. Right click `index.html`
+3. Select `Open with Live Server`
+
+Do not open HTML files directly using `file://`
+
+Navbar and footer components are loaded dynamically using JavaScript `fetch()` requests.
+
+---
+
+# GitHub Pages
+
+This project is fully compatible with GitHub Pages deployment.
+
+Main URL:
+
+https://alejandroarevaloprogrammer.github.io/juan-carlos-suarez-portfolio/
+
+---
+
+# What I Learned
+
+While developing this project, I improved my understanding of responsive front-end architecture, reusable UI components, modal systems, multimedia integration and semantic HTML structure.
+
+I also worked on accessibility improvements, SEO optimization, GitHub Pages deployment compatibility and organizing scalable front-end code for maintainability and readability.
+
+---
+
+# Contact
+
+Created by Alejandro Arevalo Rojas.
+
+GitHub:
+https://github.com/alejandroarevaloprogrammer
+
+Portfolio:
+https://alejandroarevalorojas.com/
