@@ -17,6 +17,13 @@ body{
     font-family:Arial,sans-serif;
 }
 
+html,
+body{
+
+    overflow-x:hidden;
+
+}
+
 .page-section{
     padding:140px 0 80px;
 }
